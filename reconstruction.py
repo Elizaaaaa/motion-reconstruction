@@ -84,7 +84,7 @@ def compute_iou(bbox, bboxes):
 
     return [iou(bbox[-4:], b[-4:]) for b in bboxes]
 
-def clean_data(all_keypoints):
+def clean_data(all_keypoints, video_path):
     persons = {}
     start_frame, end_frame = -1, 1
     for i, keypoints in enumerate(all_keypoints):
@@ -120,9 +120,40 @@ def clean_data(all_keypoints):
                 else:
                     ious = compute_iou(last_bbox, bboxes)
                 iou_scores.append(ious)
+            iou_scores = np.vstack(iou_scores)
+            num_bboxes = len(bboxes)
+            num_persons = len(persons.keys())
+            box_is_matched = np.zeros(num_bboxes)
+            box_is_visited = np.zeros(num_bboxes)
+            pid_is_matched = np.zeros(num_persons)
+            count = 0
+
+            iou_scores_copy = np.copy(iou_scores)
+
+            while not np.all(pid_is_matched) and not np.all(box_is_visited) and not np.all(iou_scores == -1):
+                row, col = np.unravel_index(iou_scores.argmax(), (num_persons, num_bboxes))
+                box_is_visited[col] = True
+
+                if (iou_scores[row, col] > IOU_THRESH
+                    and not pid_is_matched[row] and not box_is_matched[col]):
+                    pid_is_matched[row] = True
+                    box_is_matched[col] = True
+
+                    iou_scores[row, :] = -1
+                    count += 1
+                    if count > 100:
+                        print('infinite loop here')
+
+            unmatched_boxes = bboxes[np.logical_not(box_is_matched)]
+            unmatched_keypoints = valid_keypoints[np.logical_not(box_is_matched)]
+            for tmp, (bbox, keypoint_using) in enumerate(zip(unmatched_boxes, unmatched_keypoints)):
+                persons[num_persons + tmp] = [(i, bbox, keypoint_using)]
+
+    #start cleaning
+    img_area = read_frames(video_path, 1)
 
 #read and store keypoints from json output
-def digest_openpose_output(json_path):
+def digest_openpose_output(json_path, video_path):
 
     #TODO: read all movements in output file
     #hardcode to vault for now
@@ -134,7 +165,7 @@ def digest_openpose_output(json_path):
     for i, j in enumerate(all_json_paths):
         keypoints = read_json(j)
         all_keypoints.append(keypoints)
-    clean_data(all_keypoints)
+    clean_data(all_keypoints, video_path)
 
 video_dir = './data/*.mp4'
 output_dir = './output/'
