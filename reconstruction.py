@@ -21,7 +21,7 @@ def get_bbox(keypoint):
 def clean_data(all_keypoints):
     persons = {}
     start_frame, end_frame = -1, 1
-    for i, keypoints in all_keypoints:
+    for i, keypoints in enumerate(all_keypoints):
         if len(keypoints) == 0:
             continue
         valid_keypoints = []
@@ -31,15 +31,26 @@ def clean_data(all_keypoints):
 
 #read and store keypoints from json output
 def digest_openpose_output(json_path):
+
+    #TODO: read all movements in output file
+    #hardcode to vault for now
+
+    json_path = json_path+"vault/"
+    print(json_path)
     all_json_paths = sorted(glob(os.path.join(json_path, "*.json")))
     all_keypoints = []
-    for i, j in all_json_paths:
+    for i, j in enumerate(all_json_paths):
         keypoints = read_json(j)
         all_keypoints.append(keypoints)
+    clean_data(all_keypoints)
 
 video_dir = './data/*.mp4'
-output_dir = './output'
+output_dir = './output/'
 
 cmd_command = '/Users/eliza/Documents/openpose/build/examples/openpose/openpose.bin --video ./data/vault.mp4 --model_folder /Users/eliza/Documents/openpose/models'
-run = os.system(cmd_command)
-#print(run)
+#only run once to get the output json and bbox.h5
+#run = os.system(cmd_command)
+print('reading the openpose output')
+digest_openpose_output(output_dir)
+
+#TODO: read the openpose data, remove the irrelevant detections, only keep the main one
