@@ -6,6 +6,17 @@ import json
 
 import numpy as np
 
+VISIBLE_THRESH = 0.1
+NUM_VISIBLE_THRESH = 5
+BOX_SIZE = 224
+RADIUS = BOX_SIZE / 2.
+NMS_THRESH = 0.5
+OCCL_THRESH = 30
+IOU_THRESH = 0.005
+FREQ_THRESH = .1
+SIZE_THRESH = .23
+SCORE_THRSH = .4
+
 def read_json(json_path):
     with open(json_path) as f:
         data = json.load(f)
@@ -16,7 +27,43 @@ def read_json(json_path):
     return keypoints
 
 def get_bbox(keypoint):
-    return 0
+    visible = keypoint[:, 2] > VISIBLE_THRESH
+    visible_keypoint = keypoint[visible, :2]
+    min_pt = np.min(visible_keypoint, axis=0)
+    max_pt = np.max(visible_keypoint, axis=0)
+    person_height = np.linalg.norm(max_pt - min_pt)
+    if person_height == 0:
+        print('bad input')
+    center = (min_pt+max_pt) / 2.
+    scale = 150. / person_height
+
+    score = np.sum(keypoint[visible, 2]) / np.sum(visible)
+
+    radius = RADIUS * (1/scale)
+    top_corner= center - radius
+    bbox = np.hstack([top_corner, radius*2, radius*2])
+
+    return np.hstack([center, scale, score, bbox]), keypoint
+
+def select_bbox(bboxes, valid_keypoints):
+    if len(bboxes) == 0:
+        print('invalid input!')
+        return [], []
+    if bboxes.shape[0] == 1:
+        #only one bbox in the frame
+        return bboxes, valid_keypoints
+
+    pick = []
+    scores = bboxes[:, 3]
+    bboxes_shape = bboxes[:, 4:]
+    x1 = bboxes_shape[:, 0]
+    y1 = bboxes_shape[:, 1]
+    x2 = x1 + bboxes_shape[:, 2] - 1
+    y2 = y1 + bboxes_shape[:, 3] - 1
+    area = bboxes_shape[:, 2] * bboxes_shape[:, 3]
+
+    idxs = np.argsort(scores)
+    print(idxs)
 
 def clean_data(all_keypoints):
     persons = {}
@@ -25,9 +72,35 @@ def clean_data(all_keypoints):
         if len(keypoints) == 0:
             continue
         valid_keypoints = []
+        bboxes = []
         for keypoint in keypoints:
-            print(keypoint[:, 2])
-            #TODO: get the bbox and assign the people to bbox
+            bbox, keypoint_using = get_bbox(keypoint)
+            if bbox is not None:
+                bboxes.append(bbox)
+                valid_keypoints.append(keypoint_using)
+
+        if len(bboxes) == 0:
+            print('Not found qualified bbox!')
+            continue
+        bboxes = np.vstack(bboxes)
+        valid_keypoints = np.stack(valid_keypoints)
+        bboxes, valid_keypoints = select_bbox(bboxes, valid_keypoints)
+
+        #adding person
+        if len(persons.keys()) == 0:
+            start_frame = i
+            for j, (bbox, valid_keypoint) in enumerate(zip(bboxes, valid_keypoints)):
+                persons[j] = [(i, bbox, valid_keypoint)]
+        else:
+            end_frame = i
+            iou_scores = []
+            for pid, pbboxes in persons.items():
+                last_time, last_bbox, last_keypoint = pbboxes[-1]
+                if (i-last_time) > OCCL_THRSH:
+                    ious = -np.ones(len(bboxes))
+                else:
+                    ious = compute_iou(last_bbox, bboxes)
+                iou_scores.append(ious)
 
 #read and store keypoints from json output
 def digest_openpose_output(json_path):
