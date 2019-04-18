@@ -65,6 +65,25 @@ def select_bbox(bboxes, valid_keypoints):
     idxs = np.argsort(scores)
     print(idxs)
 
+def compute_iou(bbox, bboxes):
+
+    def iou(boxA, boxB):
+        A_area = boxA[2] * boxA[3]
+        B_area = boxB[2] * boxB[3]
+        min_x = max(boxA[0], boxB[0])
+        min_y = max(boxA[1], boxB[1])
+        endA = boxA[:2] + boxA[2:]
+        endB = boxB[:2] + boxB[2:]
+        max_x = min(endA[0], endB[0])
+        max_y = min(endA[1], endB[1])
+        w = max_x - min_x + 1
+        h = max_y - min_y + 1
+        inter_area = float(w * h)
+        iou = max(0, inter_area / (A_area+B_area-inter_area))
+        return iou
+
+    return [iou(bbox[-4:], b[-4:]) for b in bboxes]
+
 def clean_data(all_keypoints):
     persons = {}
     start_frame, end_frame = -1, 1
@@ -96,7 +115,7 @@ def clean_data(all_keypoints):
             iou_scores = []
             for pid, pbboxes in persons.items():
                 last_time, last_bbox, last_keypoint = pbboxes[-1]
-                if (i-last_time) > OCCL_THRSH:
+                if (i-last_time) > OCCL_THRESH:
                     ious = -np.ones(len(bboxes))
                 else:
                     ious = compute_iou(last_bbox, bboxes)
