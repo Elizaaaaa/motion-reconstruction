@@ -17,6 +17,26 @@ FREQ_THRESH = .1
 SIZE_THRESH = .23
 SCORE_THRSH = .4
 
+def read_frames(path, max_num=None):
+    video = cv2.VideoCapture(path)
+
+    images = []
+    # n_frames = int(vid.get(cv2.cv.CV_CAP_PROP_FRAME_COUNT))
+    counter = 0
+    success = True
+    while success:
+        success, img = video.read()
+        if success:
+            # Make BGR->RGB!!!!
+            images.append(img[:, :, ::-1])
+            counter += 1
+            if max_num is not None and counter >= max_num:
+                break
+
+    video.release()
+
+    return images
+
 def read_json(json_path):
     with open(json_path) as f:
         data = json.load(f)
