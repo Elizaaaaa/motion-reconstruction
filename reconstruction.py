@@ -135,8 +135,13 @@ def fill_in_bboxes(bboxes, start_frame, end_frame):
 
     return bboxes_filled
 
-def params_to_bboxes(cx, cy, sc):
-    return 0
+def params_to_bboxes(cx, cy, scale):
+    center = [cx, cy]
+    radius = RADIUS*(1/scale)
+    top_corner = center-radius
+    bbox = np.hstack([top_corner, radius*2, radius*2])
+
+    return bbox
 
 def smooth_detections(persons):
     per_frame = {}
@@ -164,8 +169,8 @@ def smooth_detections(persons):
         bbox_scores = bboxes_filled[:, 3]
         smoothed = np.array([scipy.signal.medfilt(param, 11) for param in bbox_params.T]).T
         smoothed_gaussian = np.array([scipy.ndimage.gaussian_filter(traj, 3) for traj in smoothed.T]).T
-        #TODO: param_to_bboxes()
-        smoothed_bboxes = np.vstack([params_to_bboxes(cx, cy, sc) for (cx,cy,sc) in smoothed_gaussian])
+
+        smoothed_bboxes = np.vstack([params_to_bboxes(cx, cy, scale) for (cx,cy,scale) in smoothed_gaussian])
         last_index = len(bbox_scores)-1
         while bbox_scores[last_index] < END_BOX_CONFIG:
             if last_index <= 0:
