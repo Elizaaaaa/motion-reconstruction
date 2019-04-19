@@ -18,6 +18,7 @@ IOU_THRESH = 0.005
 FREQ_THRESH = .1
 SIZE_THRESH = .23
 SCORE_THRSH = .4
+END_BOX_CONFIG = 0.1
 
 def read_frames(path, max_num=None):
     video = cv2.VideoCapture(path)
@@ -123,6 +124,9 @@ def compute_iou(bbox, bboxes):
 def fill_in_bboxes(bboxes, start_frame, end_frame):
     return 0
 
+def params_to_bboxes(cx, cy, sc):
+    return 0
+
 def smooth_detections(persons):
     per_frame = {}
     for personid in persons.keys():
@@ -149,7 +153,25 @@ def smooth_detections(persons):
         bbox_params = bboxes_filled[:, :3]
         bbox_scores = bboxes_filled[:, 3]
         smoothed = np.array([scipy.signal.medfilt(param, 11) for param in bbox_params.T]).T
+        smoothed_gaussian = np.array([scipy.ndimage.gaussian_filter(traj, 3) for traj in smoothed.T]).T
+        #TODO: param_to_bboxes()
+        smoothed_bboxes = np.vstack([params_to_bboxes(cx, cy, sc) for (cx,cy,sc) in smoothed_gaussian])
+        last_index = len(bbox_scores)-1
+        while bbox_scores[last_index] < END_BOX_CONFIG:
+            if last_index <= 0:
+                break
+            last_index = last_index - 1
 
+        final_bboxes = np.hstack([smoothed_gaussian[:last_index], bbox_scores.reshape(-1, 1)[:last_index], smoothed_bboxes[:last_index]])
+        final_keypoints = keypoints_filled[:last_index]
+
+        for time, bbox, keypoints in zip(times, final_bboxes, final_keypoints):
+            if time in per_frame.keys():
+                per_frame[time].append((personid, bbox, keypoints))
+            else:
+                per_frame[time] = [(personid, bbox, keypoints)]
+
+    return per_frame
 
 def clean_data(all_keypoints, video_path):
     persons = {}
@@ -240,6 +262,15 @@ def clean_data(all_keypoints, video_path):
         return {}
 
     per_frame_smooth = smooth_detections(persons)
+    per_frame = {}
+    for personid in persons.keys():
+        for time, bbox, keypoint_using in persons[personid]:
+            if time in per_frame.keys():
+                per_frame[time].append((personid, bbox, keypoint_using))
+            else:
+                per_frame[time] = [(personid, bbox, keypoint_using)]
+
+    return per_frame_smooth
 
 #read and store keypoints from json output
 def digest_openpose_output(json_path, video_path):
