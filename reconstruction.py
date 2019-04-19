@@ -71,7 +71,7 @@ def select_bbox(bboxes, valid_keypoints):
         print('invalid input!')
         return [], []
     if bboxes.shape[0] == 1:
-        #only one bbox in the frame
+        print('only one bbox in the frame')
         return bboxes, valid_keypoints
 
     pick = []
@@ -84,7 +84,22 @@ def select_bbox(bboxes, valid_keypoints):
     area = bboxes_shape[:, 2] * bboxes_shape[:, 3]
 
     idxs = np.argsort(scores)
-    print(idxs)
+    while len(idxs) > 0:
+        last = len(idxs)-1
+        i = idxs[last]
+        pick.append(i)
+        print('have picked: {}'.format(pick))
+        xx1 = np.maximum(x1[i], x1[idxs[:last]])
+        yy1 = np.maximum(y1[i], y1[idxs[:last]])
+        xx2 = np.maximum(x2[i], x2[idxs[:last]])
+        yy2 = np.maximum(y2[i], y2[idxs[:last]])
+        w = np.maximum(0, xx2-xx1+1)
+        h = np.maximum(0, yy2-yy1+1)
+        overlap = (w*h)/area[idxs[:last]]
+
+        idxs = np.delete(idxs, np.concatenate(([last], np.where(overlap>NMS_THRESH)[0])))
+
+    return bboxes[pick], valid_keypoints[pick]
 
 def compute_iou(bbox, bboxes):
 
