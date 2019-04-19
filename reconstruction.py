@@ -122,7 +122,18 @@ def compute_iou(bbox, bboxes):
     return [iou(bbox[-4:], b[-4:]) for b in bboxes]
 
 def fill_in_bboxes(bboxes, start_frame, end_frame):
-    return 0
+    bboxes_filled = []
+    boxid = 0
+    for i in range(start_frame, end_frame):
+        if bboxes[boxid][0] == i:
+            bboxes_filled.append(bboxes[boxid][1:])
+            boxid = boxid+1
+        else:
+            copybox = np.copy(bboxes_filled[-1])
+            copybox[1][:, 2] = 0.
+            bboxes_filled.append(copybox)
+
+    return bboxes_filled
 
 def params_to_bboxes(cx, cy, sc):
     return 0
@@ -134,7 +145,6 @@ def smooth_detections(persons):
         start_frame = bboxes[0][0]
         end_frame = bboxes[-1][0]
         if len(bboxes) != (end_frame-start_frame):
-            #TODO: fill_in_bboxes()
             bboxeskeypoints_filled = fill_in_bboxes(bboxes, start_frame, end_frame)
         else:
             bboxeskeypoints_filled = [bbox[1:] for bbox in bboxes]
