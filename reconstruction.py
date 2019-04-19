@@ -6,6 +6,7 @@ import json
 
 import numpy as np
 import cv2
+import scipy
 
 VISIBLE_THRESH = 0.1
 NUM_VISIBLE_THRESH = 5
@@ -104,6 +105,37 @@ def compute_iou(bbox, bboxes):
 
     return [iou(bbox[-4:], b[-4:]) for b in bboxes]
 
+def fill_in_bboxes(bboxes, start_frame, end_frame):
+    return 0
+
+def smooth_detections(persons):
+    per_frame = {}
+    for personid in persons.keys():
+        bboxes = persons[personid]
+        start_frame = bboxes[0][0]
+        end_frame = bboxes[-1][0]
+        if len(bboxes) != (end_frame-start_frame):
+            #TODO: fill_in_bboxes()
+            bboxeskeypoints_filled = fill_in_bboxes(bboxes, start_frame, end_frame)
+        else:
+            bboxeskeypoints_filled = [bbox[1:] for bbox in bboxes]
+        bboxes_filled, keypoints_filled = [], []
+        for bbox, keypoint in bboxeskeypoints_filled:
+            bboxes_filled.append(bbox)
+            keypoints_filled.append(keypoint)
+
+        times = np.arrange(start_frame, end_frame)
+        if len(bboxes_filled) == 0:
+            print('lack of bboxes')
+            continue
+
+        bboxes_filled = np.vstack(bboxes_filled)
+        keypoints_filled = np.vstack(keypoints_filled)
+        bbox_params = bboxes_filled[:, :3]
+        bbox_scores = bboxes_filled[:, 3]
+        smoothed = np.array([scipy.signal.medfilt(param, 11) for param in bbox_params.T]).T
+
+
 def clean_data(all_keypoints, video_path):
     persons = {}
     start_frame, end_frame = -1, 1
@@ -173,7 +205,8 @@ def clean_data(all_keypoints, video_path):
     frames = read_frames(video_path, 1)
     img_area = frames[0].shape[0]*frames[0].shape[1]
     duration = float(end_frame-start_frame)
-    for personid in persons.keys():
+    for personid in list(persons):
+        print(personid)
         med_score = np.median([bbox[3] for (_, bbox, _) in persons[personid]])
         frequency = len(persons[personid])/duration
         med_bbox_area = np.median([bbox[6]*bbox[7] for (_, bbox, _) in persons[personid]]) / float(img_area)
@@ -197,9 +230,9 @@ def clean_data(all_keypoints, video_path):
 def digest_openpose_output(json_path, video_path):
 
     #TODO: read all movements in output file
-    #hardcode to vault for now
+    #hardcode to cartwheel_b for now
 
-    json_path = json_path+"vault/"
+    json_path = json_path+"cartwheel_b/"
     print(json_path)
     all_json_paths = sorted(glob(os.path.join(json_path, "*.json")))
     all_keypoints = []
@@ -208,11 +241,11 @@ def digest_openpose_output(json_path, video_path):
         all_keypoints.append(keypoints)
     clean_data(all_keypoints, video_path)
 
-#hardcode everything to vault first
-video_dir = './data/vault.mp4'
+#hardcode everything to cartwheel_b first
+video_dir = './data/cartwheel_b.mp4'
 output_dir = './output/'
 
-cmd_command = '/Users/eliza/Documents/openpose/build/examples/openpose/openpose.bin --video ./data/vault.mp4 --model_folder /Users/eliza/Documents/openpose/models'
+cmd_command = '/Users/eliza/Documents/openpose/build/examples/openpose/openpose.bin --video ./data/cartwheel_b.mp4 --model_folder /Users/eliza/Documents/openpose/models'
 #only run once to get the output json and bbox.h5
 #run = os.system(cmd_command)
 print('reading the openpose output')
