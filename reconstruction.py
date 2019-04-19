@@ -5,6 +5,7 @@ from glob import glob
 import json
 
 import numpy as np
+import cv2
 
 VISIBLE_THRESH = 0.1
 NUM_VISIBLE_THRESH = 5
@@ -21,16 +22,15 @@ def read_frames(path, max_num=None):
     video = cv2.VideoCapture(path)
 
     images = []
-    # n_frames = int(vid.get(cv2.cv.CV_CAP_PROP_FRAME_COUNT))
-    counter = 0
+    count = 0
     success = True
     while success:
         success, img = video.read()
         if success:
             # Make BGR->RGB!!!!
             images.append(img[:, :, ::-1])
-            counter += 1
-            if max_num is not None and counter >= max_num:
+            count += 1
+            if max_num is not None and count >= max_num:
                 break
 
     video.release()
@@ -170,7 +170,28 @@ def clean_data(all_keypoints, video_path):
                 persons[num_persons + tmp] = [(i, bbox, keypoint_using)]
 
     #start cleaning
-    img_area = read_frames(video_path, 1)
+    frames = read_frames(video_path, 1)
+    img_area = frames[0].shape[0]*frames[0].shape[1]
+    duration = float(end_frame-start_frame)
+    for personid in persons.keys():
+        med_score = np.median([bbox[3] for (_, bbox, _) in persons[personid]])
+        frequency = len(persons[personid])/duration
+        med_bbox_area = np.median([bbox[6]*bbox[7] for (_, bbox, _) in persons[personid]]) / float(img_area)
+        if frequency < FREQ_THRESH:
+            print('frequency too low')
+            del persons[personid]
+            continue
+        if med_score < SCORE_THRSH:
+            print('score too low')
+            del persons[personid]
+            continue
+    print('Total survived: {}'.format(len(persons.keys())))
+
+    if len(persons.keys()) == 0:
+        print('nothing survived')
+        return {}
+
+    per_frame_smooth = smooth_detections(persons)
 
 #read and store keypoints from json output
 def digest_openpose_output(json_path, video_path):
@@ -187,13 +208,14 @@ def digest_openpose_output(json_path, video_path):
         all_keypoints.append(keypoints)
     clean_data(all_keypoints, video_path)
 
-video_dir = './data/*.mp4'
+#hardcode everything to vault first
+video_dir = './data/vault.mp4'
 output_dir = './output/'
 
 cmd_command = '/Users/eliza/Documents/openpose/build/examples/openpose/openpose.bin --video ./data/vault.mp4 --model_folder /Users/eliza/Documents/openpose/models'
 #only run once to get the output json and bbox.h5
 #run = os.system(cmd_command)
 print('reading the openpose output')
-digest_openpose_output(output_dir)
+digest_openpose_output(output_dir, video_dir)
 
 #TODO: read the openpose data, remove the irrelevant detections, only keep the main one
