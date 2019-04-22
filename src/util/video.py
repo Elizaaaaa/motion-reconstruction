@@ -39,6 +39,7 @@ def read_data(vid_path, op_dir, max_length=10000):
         return None, None, False
     frames = read_frames(vid_path)
 
+    print('loading h5 file {}'.format(bbox_path))
     per_frame_people = dd.io.load(bbox_path)
 
     if len(per_frame_people.keys()) == 0:

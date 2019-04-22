@@ -8,6 +8,11 @@ import numpy as np
 import cv2
 import scipy
 import deepdish as dd
+import tensorflow as tf
+
+from src.config import get_config
+from src.util.video import read_data, collect_frames
+from src.mimicus-refiner import Refiner
 
 VISIBLE_THRESH = 0.1
 NUM_VISIBLE_THRESH = 5
@@ -20,6 +25,9 @@ FREQ_THRESH = .1
 SIZE_THRESH = .23
 SCORE_THRSH = .4
 END_BOX_CONFIG = 0.1
+
+KMaxLength = 1000
+KVisThr = 0.2
 
 def read_frames(path, max_num=None):
     video = cv2.VideoCapture(path)
@@ -258,7 +266,7 @@ def clean_data(all_keypoints, video_path):
     frames = read_frames(video_path, 1)
     img_area = frames[0].shape[0]*frames[0].shape[1]
     duration = float(end_frame-start_frame)
-    for personid in list(persons):
+    for personid in persons.keys():
         print(personid)
         med_score = np.median([bbox[3] for (_, bbox, _) in persons[personid]])
         frequency = len(persons[personid])/duration
@@ -305,6 +313,62 @@ def digest_openpose_output(json_path, video_path):
     #hardcode to cartwheel_b
     dd.io.save('./output/cartwheel_b_bboxes.h5', per_frame_people)
 
+def get_pred_pred_prefix(load_path):
+    checkpt_name = os.path.basename(load_path)
+    model_name = os.path.basename(os.path.dirname(config.load_path))
+    print("ckpt is {0}, modelname is {1}".format(checkpt_name, model_name))
+
+    prefix = []
+
+    if config.refine_inpose:
+        prefix += ['OptPose']
+
+    prefix += ['kpw%.2f' % config.e_loss_weight]
+    prefix += ['shapew%.2f' % config.shape_loss_weight]
+    prefix += ['jointw%.2f' % config.joint_smooth_weight]
+    if config.use_weighted_init_pose:
+        prefix += ['init-posew%.2f-weighted' % config.init_pose_loss_weight]
+    else:
+        prefix += ['init-posew%.2f' % config.init_pose_loss_weight]
+    if config.camera_smooth_weight > 0:
+        prefix += ['camw%.2f' % config.camera_smooth_weight]
+
+    prefix += ['numitr%d' % config.num_refine]
+
+    prefix = '_'.join(prefix)
+    if 'Feb12_2100' not in model_name:
+        pred_dir = os.path.join(config.out_dir, model_name + '-' + checkpt_name, prefix)
+    else:
+        if prefix == '':
+            save_prefix = checkpt_name
+        else:
+            save_prefix = prefix + '_' + checkpt_name
+
+        pred_dir = os.path.join(config.out_dir, save_prefix)
+
+    print('\n***\nsaving output in %s\n***\n' % pred_dir)
+
+    if not os.path.exists(pred_dir):
+        os.makedirs(pred_dir)
+
+    return pred_dir
+
+def run_video(frames, per_frame_people, config, output_path):
+    proc_images, proc_keypoints, proc_params, start_frame, end_frame = collect_frames(
+        frames, per_frame_people, config.img_size, KVisThr)
+
+    num_frames = len(proc_images)
+    proc_images = np.vstack(proc_images)
+    result_path = output_path.replace('.mp4', '.h5')
+    if not os.path.exists(result_path):
+        print("been here")
+        tf.reset_default_graph()
+        #TODO: replace the refiner with our version
+        model = Refiner(config, num_frames)
+    return 0
+
+
+
 #hardcode everything to cartwheel_b first
 video_dir = './data/cartwheel_b.mp4'
 output_dir = './output/'
@@ -315,5 +379,25 @@ cmd_command = '/Users/eliza/Documents/openpose/build/examples/openpose/openpose.
 print('reading the openpose output')
 digest_openpose_output(output_dir, video_dir)
 print('finish preparing the openpose data')
+print('############################')
 
-#TODO: read the openpose data, remove the irrelevant detections, only keep the main one
+print('reading config')
+config = get_config()
+if 'model.ckpt' not in config.load_path:
+    raise Exception('Must specify a model checkpoint!')
+
+np.random.seed(5)
+video_paths = sorted(glob(os.path.join(config.video_dir, "*.mp4")))
+pred_dir = get_pred_pred_prefix(config.load_path)
+
+for i, video_path in enumerate(video_paths):
+    output_path = os.path.join(pred_dir, os.path.basename(video_path).replace('.mp4', '.h5'))
+    print(output_path)
+    if not os.path.exists(output_path):
+        print('working on {}'.format(os.path.basename(video_path)))
+        frames, per_frame_people, valid = read_data(video_path, './output/', max_length=KMaxLength)
+        if valid:
+            #print(per_frame_people)
+            run_video(frames, per_frame_people, config, output_path)
+
+
