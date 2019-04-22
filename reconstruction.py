@@ -12,7 +12,7 @@ import tensorflow as tf
 
 from src.config import get_config
 from src.util.video import read_data, collect_frames
-from src.mimicus-refiner import Refiner
+from src.mimicus_refiner import Refiner
 
 VISIBLE_THRESH = 0.1
 NUM_VISIBLE_THRESH = 5
