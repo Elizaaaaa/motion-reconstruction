@@ -7,6 +7,7 @@ import json
 import numpy as np
 import cv2
 import scipy
+import deepdish as dd
 
 VISIBLE_THRESH = 0.1
 NUM_VISIBLE_THRESH = 5
@@ -300,16 +301,19 @@ def digest_openpose_output(json_path, video_path):
     for i, j in enumerate(all_json_paths):
         keypoints = read_json(j)
         all_keypoints.append(keypoints)
-    clean_data(all_keypoints, video_path)
+    per_frame_people = clean_data(all_keypoints, video_path)
+    #hardcode to cartwheel_b
+    dd.io.save('./output/cartwheel_b_bboxes.h5', per_frame_people)
 
 #hardcode everything to cartwheel_b first
 video_dir = './data/cartwheel_b.mp4'
 output_dir = './output/'
 
 cmd_command = '/Users/eliza/Documents/openpose/build/examples/openpose/openpose.bin --video ./data/cartwheel_b.mp4 --model_folder /Users/eliza/Documents/openpose/models'
-#only run once to get the output json and bbox.h5
+#only run once to get the output json
 #run = os.system(cmd_command)
 print('reading the openpose output')
 digest_openpose_output(output_dir, video_dir)
+print('finish preparing the openpose data')
 
 #TODO: read the openpose data, remove the irrelevant detections, only keep the main one
