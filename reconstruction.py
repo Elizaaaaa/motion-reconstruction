@@ -363,8 +363,14 @@ def run_video(frames, per_frame_people, config, output_path):
     if not os.path.exists(result_path):
         print("been here")
         tf.reset_default_graph()
-        #TODO: replace the refiner with our version
+        #TODO: replace the refiner with our version, now try to only abstract joint information
         model = Refiner(config, num_frames)
+
+        scale_factors = [np.mean(pp['scale']) for pp in proc_params]
+        offsets = np.vstack([pp['start_pt'] for pp in proc_params])
+        results = model.predict(proc_images, proc_keypoints, scale_factors, offsets)
+        results['proc_params'] = proc_params
+        
     return 0
 
 

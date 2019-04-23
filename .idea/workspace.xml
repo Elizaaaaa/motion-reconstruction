@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ff267bde-fdb4-4c14-9928-e349f7d0a30b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reconstruction.py" beforeDir="false" afterPath="$PROJECT_DIR$/reconstruction.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mimicus_refiner.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/mimicus_refiner.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/reconstruction.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-70">
-              <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+            <state relative-caret-position="438">
+              <caret line="372" column="8" selection-start-line="372" selection-start-column="8" selection-end-line="372" selection-end-column="8" />
               <folding>
                 <element signature="e#53#62#0" expanded="true" />
               </folding>
@@ -28,11 +29,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mimicus_refiner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="63" column="29" lean-forward="true" selection-start-line="63" selection-start-column="29" selection-end-line="63" selection-end-column="29" />
+            <state relative-caret-position="165">
+              <caret line="218" column="28" selection-start-line="218" selection-start-column="28" selection-end-line="218" selection-end-column="28" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -41,13 +42,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/refiner.py">
+        <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/tensorflow/python/framework/ops.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="100" lean-forward="true" selection-start-line="82" selection-start-column="8" selection-end-line="100" />
-              <folding>
-                <element signature="e#75#113#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="374">
+              <caret line="504" selection-start-line="504" selection-end-line="504" />
             </state>
           </provider>
         </entry>
@@ -64,10 +62,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/config.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="682">
-              <caret line="63" column="67" selection-start-line="63" selection-start-column="67" selection-end-line="63" selection-end-column="67" />
+            <state relative-caret-position="180">
+              <caret line="48" column="31" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="31" />
               <folding>
                 <element signature="e#89#127#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/refiner.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="273">
+              <caret line="384" column="12" selection-start-line="384" selection-start-column="12" selection-end-line="385" selection-end-column="76" />
+              <folding>
+                <element signature="e#75#113#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -94,13 +104,24 @@
       <find>refine_inpo</find>
       <find>out_dir</find>
       <find>viz</find>
-      <find>op_dir</find>
       <find>io</find>
       <find>save</find>
       <find>dd.io</find>
       <find>list(</find>
       <find>collect</find>
+      <find>outou</find>
+      <find>op_dir</find>
+      <find>image_feat_var</find>
+      <find>shapes</find>
+      <find>smpl</find>
+      <find>keypoint_loss</find>
+      <find>pred_Rs</find>
+      <find>prepare</find>
       <find>output</find>
+      <find>num_stage</find>
+      <find>loss</find>
+      <find>loss_</find>
+      <find>fetch_dict</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -112,9 +133,9 @@
         <option value="$PROJECT_DIR$/src/config.py" />
         <option value="$PROJECT_DIR$/src/util/video.py" />
         <option value="$PROJECT_DIR$/src/mimicus-refiner.py" />
-        <option value="$PROJECT_DIR$/reconstruction.py" />
         <option value="$PROJECT_DIR$/src/refiner.py" />
         <option value="$PROJECT_DIR$/src/mimicus_refiner.py" />
+        <option value="$PROJECT_DIR$/reconstruction.py" />
       </list>
     </option>
   </component>
@@ -230,23 +251,23 @@
       <workItem from="1555609938006" duration="27000" />
       <workItem from="1555610254225" duration="8781000" />
       <workItem from="1555633251330" duration="72000" />
-      <workItem from="1555714302143" duration="10674000" />
+      <workItem from="1555714302143" duration="23157000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28271000" />
+    <option name="totallyTimeSpent" value="40754000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="970" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2979243" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18009768" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32915717" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32915717" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -255,7 +276,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32915717" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" side_tool="true" visible="true" weight="0.29840547" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32915717" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -274,16 +295,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="71" selection-start-column="65" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="682">
-          <caret line="63" column="67" selection-start-line="63" selection-start-column="67" selection-end-line="63" selection-end-column="67" />
-          <folding>
-            <element signature="e#89#127#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -332,20 +343,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/reconstruction.py">
+    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/tensorflow/python/framework/ops.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-70">
-          <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+        <state relative-caret-position="374">
+          <caret line="504" selection-start-line="504" selection-end-line="504" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="48" column="31" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="31" />
           <folding>
-            <element signature="e#53#62#0" expanded="true" />
+            <element signature="e#89#127#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tf_smpl/batch_smpl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="159" column="29" lean-forward="true" selection-start-line="159" selection-start-column="29" selection-end-line="159" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/refiner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="100" lean-forward="true" selection-start-line="82" selection-start-column="8" selection-end-line="100" />
+        <state relative-caret-position="273">
+          <caret line="384" column="12" selection-start-line="384" selection-start-column="12" selection-end-line="385" selection-end-column="76" />
           <folding>
             <element signature="e#75#113#0" expanded="true" />
           </folding>
@@ -354,10 +379,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mimicus_refiner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="63" column="29" lean-forward="true" selection-start-line="63" selection-start-column="29" selection-end-line="63" selection-end-column="29" />
+        <state relative-caret-position="165">
+          <caret line="218" column="28" selection-start-line="218" selection-start-column="28" selection-end-line="218" selection-end-column="28" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reconstruction.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="372" column="8" selection-start-line="372" selection-start-column="8" selection-end-line="372" selection-end-column="8" />
+          <folding>
+            <element signature="e#53#62#0" expanded="true" />
           </folding>
         </state>
       </provider>
