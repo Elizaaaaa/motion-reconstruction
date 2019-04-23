@@ -14,6 +14,8 @@ from src.config import get_config
 from src.util.video import read_data, collect_frames
 from src.mimicus_refiner import Refiner
 
+from smpl_webuser.serialization import load_model
+
 VISIBLE_THRESH = 0.1
 NUM_VISIBLE_THRESH = 5
 BOX_SIZE = 224
@@ -361,7 +363,6 @@ def run_video(frames, per_frame_people, config, output_path):
     proc_images = np.vstack(proc_images)
     result_path = output_path.replace('.mp4', '.h5')
     if not os.path.exists(result_path):
-        print("been here")
         tf.reset_default_graph()
         #TODO: replace the refiner with our version, now try to only abstract joint information
         model = Refiner(config, num_frames)
@@ -370,7 +371,17 @@ def run_video(frames, per_frame_people, config, output_path):
         offsets = np.vstack([pp['start_pt'] for pp in proc_params])
         results = model.predict(proc_images, proc_keypoints, scale_factors, offsets)
         results['proc_params'] = proc_params
-        
+
+        result_dict = {}
+        used_frames = frames[start_frame:end_frame + 1]
+        for i, (frame, proc_param) in enumerate(zip(used_frames, proc_params)):
+            op_keypoint = proc_params['op_kp']
+
+            theta = results['theta'][i]
+            pose = theta[3:3+72]
+            shape = theta[3+72:]
+            smpl.trans[:] = 0.
+
     return 0
 
 
@@ -391,6 +402,8 @@ print('reading config')
 config = get_config()
 if 'model.ckpt' not in config.load_path:
     raise Exception('Must specify a model checkpoint!')
+
+smpl = load_model(config.smpl_model_path)
 
 np.random.seed(5)
 video_paths = sorted(glob(os.path.join(config.video_dir, "*.mp4")))
