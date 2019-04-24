@@ -42,7 +42,6 @@ def read_data(vid_path, op_dir, max_length=10000):
     print('loading h5 file {}'.format(bbox_path))
     per_frame_people = dd.io.load(bbox_path)
 
-    print(per_frame_people)
     if len(per_frame_people.keys()) == 0:
         print('no enough people in the frame')
         return None, None, False
@@ -88,6 +87,7 @@ def openpose2cocoplus(op_kp):
     permute_order = np.array([op_names.index(name) for name in joint_names])
     # Append a dummy 0 joint for the head.
     op_kp = np.vstack((op_kp, np.zeros((1, 3))))
+
     kp = op_kp[permute_order, :]
 
     return kp
@@ -183,7 +183,9 @@ def collect_frames(frames, per_frame_people, img_size, vis_thresh):
         people_here = per_frame_people[i]
         for p_id, bbox, op_kp in people_here:
             if p_id != use_p_id:
+                print('skip this frame!')
                 continue
+
         proc_img, kp, proc_param = preprocess_image(frame, bbox, op_kp,
                                                     img_size, vis_thresh)
         proc_imgs.append(proc_img)

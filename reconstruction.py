@@ -6,7 +6,8 @@ import json
 
 import numpy as np
 import cv2
-import scipy
+import scipy.signal as signal
+import scipy.ndimage as ndimage
 import deepdish as dd
 import tensorflow as tf
 
@@ -178,8 +179,8 @@ def smooth_detections(persons):
         keypoints_filled = np.vstack(keypoints_filled)
         bbox_params = bboxes_filled[:, :3]
         bbox_scores = bboxes_filled[:, 3]
-        smoothed = np.array([scipy.signal.medfilt(param, 11) for param in bbox_params.T]).T
-        smoothed_gaussian = np.array([scipy.ndimage.gaussian_filter(traj, 3) for traj in smoothed.T]).T
+        smoothed = np.array([signal.medfilt(param, 11) for param in bbox_params.T]).T
+        smoothed_gaussian = np.array([ndimage.gaussian_filter(traj, 3) for traj in smoothed.T]).T
 
         smoothed_bboxes = np.vstack([params_to_bboxes(cx, cy, scale) for (cx,cy,scale) in smoothed_gaussian])
         last_index = len(bbox_scores)-1
@@ -221,6 +222,8 @@ def clean_data(all_keypoints, video_path):
         bboxes = np.vstack(bboxes)
         valid_keypoints = np.stack(valid_keypoints)
         bboxes, valid_keypoints = select_bbox(bboxes, valid_keypoints)
+
+        print('hows valid keypoints? {}'.format(valid_keypoints))
 
         #adding person
         if len(persons.keys()) == 0:
@@ -299,7 +302,7 @@ def clean_data(all_keypoints, video_path):
             else:
                 per_frame[time] = [(personid, bbox, keypoint_using)]
 
-    return per_frame_smooth
+    return per_frame
 
 #read and store keypoints from json output
 def digest_openpose_output(json_path, video_path):
@@ -315,7 +318,6 @@ def digest_openpose_output(json_path, video_path):
         keypoints = read_json(j)
         all_keypoints.append(keypoints)
     per_frame_people = clean_data(all_keypoints, video_path)
-    print('digest: {}'.format(per_frame_people))
     #hardcode to vault
     dd.io.save('./output/vault_bboxes.h5', per_frame_people)
 
@@ -360,10 +362,13 @@ def get_pred_pred_prefix(load_path):
     return pred_dir
 
 def run_video(frames, per_frame_people, config, output_path):
+    print('run video with smpl')
+
     proc_images, proc_keypoints, proc_params, start_frame, end_frame = collect_frames(
         frames, per_frame_people, config.img_size, KVisThr)
 
     num_frames = len(proc_images)
+    print('after run video has {} images'.format(num_frames))
     proc_images = np.vstack(proc_images)
     result_path = output_path.replace('.mp4', '.h5')
     if not os.path.exists(result_path):
@@ -422,6 +427,7 @@ config = get_config()
 if 'model.ckpt' not in config.load_path:
     raise Exception('Must specify a model checkpoint!')
 
+print('loading smpl model')
 smpl = load_model(config.smpl_model_path)
 
 np.random.seed(5)
@@ -429,15 +435,19 @@ video_paths = sorted(glob(os.path.join(config.video_dir, "*.mp4")))
 pred_dir = get_pred_pred_prefix(config.load_path)
 
 for i, video_path in enumerate(video_paths):
+    print('working on {}'.format(video_path))
+
     output_path = os.path.join(pred_dir, os.path.basename(video_path).replace('.mp4', '.h5'))
-    print(output_path)
-    if not os.path.exists(output_path):
-        print('working on {}'.format(os.path.basename(video_path)))
-        frames, per_frame_people, valid = read_data(video_path, './output/', max_length=KMaxLength)
-        if valid:
-            #print(per_frame_people)
-            run_video(frames, per_frame_people, config, output_path)
-        else:
-            print('nothing valid')
+    #TODO: run it even exists
+    if os.path.exists(output_path):
+        print('output file exists!')
+        os.remove(output_path)
+
+    print('working on {}'.format(os.path.basename(video_path)))
+    frames, per_frame_people, valid = read_data(video_path, './output/', max_length=KMaxLength)
+    if valid:
+        run_video(frames, per_frame_people, config, output_path)
+    else:
+        print('nothing valid')
 
 
