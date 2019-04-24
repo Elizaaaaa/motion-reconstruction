@@ -405,7 +405,7 @@ def run_video(frames, per_frame_people, config, output_path):
 
         print('writing into {}'.format(result_path))
         dd.io.save('temp.h5', result_dict)
-
+        print(type(result_dict))
 
 
 
