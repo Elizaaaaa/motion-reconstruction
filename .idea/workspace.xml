@@ -2,54 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ff267bde-fdb4-4c14-9928-e349f7d0a30b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/csvexporter.py" beforeDir="false" afterPath="$PROJECT_DIR$/csvexporter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output/csv/csv_joined.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/csv_joined.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_0.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_0.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_1.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_10.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_10.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_11.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_11.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_12.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_12.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_13.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_13.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_14.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_14.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_15.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_15.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_16.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_16.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_17.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_17.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_18.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_18.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_19.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_19.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_20.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_20.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_21.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_21.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_22.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_22.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_23.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_23.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_24.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_24.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_25.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_25.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_26.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_26.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_27.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_27.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_28.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_28.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_29.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_29.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_3.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_30.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_30.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_31.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_31.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_32.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_32.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_33.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_33.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_34.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_34.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_35.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_35.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_36.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_36.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_37.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_37.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_38.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_38.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_39.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_39.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_4.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_4.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_40.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_40.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_41.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_41.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_42.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_42.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_43.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_43.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_44.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_44.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_45.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_45.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_5.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_5.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_6.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_6.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_7.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_7.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_8.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_8.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/vault_9.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/vault_9.csv" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,8 +20,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/reconstruction.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="362" selection-start-line="362" selection-end-line="362" />
+            <state relative-caret-position="-324">
+              <caret line="365" column="5" selection-start-line="365" selection-start-column="5" selection-end-line="365" selection-end-column="5" />
               <folding>
                 <element signature="e#53#62#0" expanded="true" />
               </folding>
@@ -74,11 +29,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/csvexporter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="702">
-              <caret line="39" column="42" lean-forward="true" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
+            <state relative-caret-position="255">
+              <caret line="17" column="48" lean-forward="true" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -110,8 +65,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mimicus_refiner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="141" column="21" selection-start-line="141" selection-start-column="21" selection-end-line="141" selection-end-column="21" />
+            <state relative-caret-position="-1939">
+              <caret line="205" column="38" lean-forward="true" selection-start-line="205" selection-start-column="38" selection-end-line="205" selection-end-column="38" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -119,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/util/video.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="37" column="14" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="14" />
+            <state relative-caret-position="238">
+              <caret line="61" column="53" selection-start-line="61" selection-start-column="53" selection-end-line="61" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -184,7 +139,6 @@
       <find>collect_frame</find>
       <find>cart</find>
       <find>read_data</find>
-      <find>run video</find>
       <find>preprocess_image</find>
       <find>openpose2cocoplus</find>
       <find>op_kp</find>
@@ -193,6 +147,7 @@
       <find>clean_data</find>
       <find>print(</find>
       <find>io.save</find>
+      <find>run video</find>
     </findStrings>
     <replaceStrings>
       <replace>vault</replace>
@@ -210,8 +165,8 @@
         <option value="$PROJECT_DIR$/src/mimicus_refiner.py" />
         <option value="$PROJECT_DIR$/src/util/video.py" />
         <option value="$PROJECT_DIR$/reconstruction.py" />
-        <option value="$PROJECT_DIR$/csvexporter.py" />
         <option value="$PROJECT_DIR$/csv_to_bvh.py" />
+        <option value="$PROJECT_DIR$/csvexporter.py" />
       </list>
     </option>
   </component>
@@ -322,12 +277,12 @@
       <workItem from="1555610254225" duration="8781000" />
       <workItem from="1555633251330" duration="72000" />
       <workItem from="1555714302143" duration="24912000" />
-      <workItem from="1556059163330" duration="16974000" />
+      <workItem from="1556059163330" duration="17713000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59483000" />
+    <option name="totallyTimeSpent" value="60222000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="970" extended-state="0" />
@@ -432,33 +387,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mimicus_refiner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="141" column="21" selection-start-line="141" selection-start-column="21" selection-end-line="141" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/video.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="37" column="14" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/reconstruction.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="362" selection-start-line="362" selection-end-line="362" />
-          <folding>
-            <element signature="e#53#62#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/output/csv/csv_joined.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -481,11 +409,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/csvexporter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="39" column="42" lean-forward="true" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
+        <state relative-caret-position="255">
+          <caret line="17" column="48" lean-forward="true" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reconstruction.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-324">
+          <caret line="365" column="5" selection-start-line="365" selection-start-column="5" selection-end-line="365" selection-end-column="5" />
+          <folding>
+            <element signature="e#53#62#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mimicus_refiner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1939">
+          <caret line="205" column="38" lean-forward="true" selection-start-line="205" selection-start-column="38" selection-end-line="205" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/video.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="61" column="53" selection-start-line="61" selection-start-column="53" selection-end-line="61" selection-end-column="53" />
         </state>
       </provider>
     </entry>

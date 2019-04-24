@@ -25,6 +25,8 @@ joints_names = ['Ankle.R_x', 'Ankle.R_y', 'Ankle.R_z',
 
 
 all_frames = dd.io.load('temp.h5')
+temp = pd.DataFrame(all_frames)
+temp.to_csv('havetry.csv')
 
 path = './output/csv/'
 
