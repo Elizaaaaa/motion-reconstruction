@@ -40,6 +40,13 @@ for frame in all_frames.keys():
         joints_export.iloc[:, 1::3] = joints_export.iloc[:, 1::3] * -1
         joints_export.iloc[:, 2::3] = joints_export.iloc[:, 2::3] * -1
 
+        hipCenter = joints_export.loc[:][['Hip.R_x', 'Hip.R_y', 'Hip.R_z',
+                                          'Hip.L_x', 'Hip.L_y', 'Hip.L_z']]
+
+        joints_export['hip.Center_x'] = hipCenter.iloc[0][::3].sum() / 2
+        joints_export['hip.Center_y'] = hipCenter.iloc[0][1::3].sum() / 2
+        joints_export['hip.Center_z'] = hipCenter.iloc[0][2::3].sum() / 2
+
         joints_export.to_csv(path + "vault_"+str(frame)+".csv")
 
 
