@@ -83,7 +83,7 @@ def select_bbox(bboxes, valid_keypoints):
         print('invalid input!')
         return [], []
     if bboxes.shape[0] == 1:
-        print('only one bbox in the frame')
+        #print('only one bbox in the frame')
         return bboxes, valid_keypoints
 
     pick = []
@@ -169,7 +169,7 @@ def smooth_detections(persons):
             bboxes_filled.append(bbox)
             keypoints_filled.append(keypoint)
 
-        times = np.arrange(start_frame, end_frame)
+        times = np.arange(start_frame, end_frame)
         if len(bboxes_filled) == 0:
             print('lack of bboxes')
             continue
@@ -204,7 +204,9 @@ def clean_data(all_keypoints, video_path):
     start_frame, end_frame = -1, 1
     for i, keypoints in enumerate(all_keypoints):
         if len(keypoints) == 0:
+            print('{0} not having keypoints'.format(i))
             continue
+
         valid_keypoints = []
         bboxes = []
         for keypoint in keypoints:
@@ -222,6 +224,7 @@ def clean_data(all_keypoints, video_path):
 
         #adding person
         if len(persons.keys()) == 0:
+            print('adding the first person')
             start_frame = i
             for j, (bbox, valid_keypoint) in enumerate(zip(bboxes, valid_keypoints)):
                 persons[j] = [(i, bbox, valid_keypoint)]
@@ -243,14 +246,13 @@ def clean_data(all_keypoints, video_path):
             pid_is_matched = np.zeros(num_persons)
             count = 0
 
-            iou_scores_copy = np.copy(iou_scores)
-
             while not np.all(pid_is_matched) and not np.all(box_is_visited) and not np.all(iou_scores == -1):
                 row, col = np.unravel_index(iou_scores.argmax(), (num_persons, num_bboxes))
                 box_is_visited[col] = True
 
                 if (iou_scores[row, col] > IOU_THRESH
                     and not pid_is_matched[row] and not box_is_matched[col]):
+                    persons[row].append((i, bboxes[col], valid_keypoints[col]))
                     pid_is_matched[row] = True
                     box_is_matched[col] = True
 
@@ -271,7 +273,6 @@ def clean_data(all_keypoints, video_path):
     duration = float(end_frame-start_frame)
     for personid in persons.keys():
         med_score = np.median([bbox[3] for (_, bbox, _) in persons[personid]])
-        print(persons[personid])
         frequency = len(persons[personid])/duration
         print('{0} person frequency is {1}, length is {2} and duration is {3}'.format(personid, frequency, len(persons[personid]), duration))
         med_bbox_area = np.median([bbox[6]*bbox[7] for (_, bbox, _) in persons[personid]]) / float(img_area)
@@ -304,9 +305,9 @@ def clean_data(all_keypoints, video_path):
 def digest_openpose_output(json_path, video_path):
 
     #TODO: read all movements in output file
-    #hardcode to cartwheel_b for now
+    #hardcode to vault for now
 
-    json_path = json_path+"cartwheel_b/"
+    json_path = json_path+"vault/"
     print(json_path)
     all_json_paths = sorted(glob(os.path.join(json_path, "*.json")))
     all_keypoints = []
@@ -315,8 +316,8 @@ def digest_openpose_output(json_path, video_path):
         all_keypoints.append(keypoints)
     per_frame_people = clean_data(all_keypoints, video_path)
     print('digest: {}'.format(per_frame_people))
-    #hardcode to cartwheel_b
-    dd.io.save('./output/cartwheel_b_bboxes.h5', per_frame_people)
+    #hardcode to vault
+    dd.io.save('./output/vault_bboxes.h5', per_frame_people)
 
 def get_pred_pred_prefix(load_path):
     checkpt_name = os.path.basename(load_path)
@@ -403,12 +404,12 @@ def run_video(frames, per_frame_people, config, output_path):
 
 
 
-#hardcode everything to cartwheel_b first
-video_dir = './data/cartwheel_b.mp4'
+#hardcode everything to vault first
+video_dir = './data/vault.mp4'
 output_dir = './output/'
 
 #TODO: output path is not correct
-cmd_command = '/Users/eliza/Documents/openpose/build/examples/openpose/openpose.bin --video ./data/cartwheel_b.mp4 --write_json ./data/output/ --write_images ./data/output/ --write_images_format jpg --model_folder /Users/eliza/Documents/openpose/models'
+cmd_command = '/Users/eliza/Documents/openpose/build/examples/openpose/openpose.bin --video ./data/vault.mp4 --write_json ./data/output/ --write_images ./data/output/ --write_images_format jpg --model_folder /Users/eliza/Documents/openpose/models'
 #only run once to get the output json
 #run = os.system(cmd_command)
 print('reading the openpose output')
