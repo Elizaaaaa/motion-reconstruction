@@ -73,7 +73,7 @@ def get_bbox(keypoint):
     score = np.sum(keypoint[visible, 2]) / np.sum(visible)
 
     radius = RADIUS * (1/scale)
-    top_corner= center - radius
+    top_corner = center - radius
     bbox = np.hstack([top_corner, radius*2, radius*2])
 
     return np.hstack([center, scale, score, bbox]), keypoint
@@ -265,13 +265,15 @@ def clean_data(all_keypoints, video_path):
                 persons[num_persons + tmp] = [(i, bbox, keypoint_using)]
 
     #start cleaning
+    print('before cleaning has: {}'.format(len(persons.keys())))
     frames = read_frames(video_path, 1)
     img_area = frames[0].shape[0]*frames[0].shape[1]
     duration = float(end_frame-start_frame)
     for personid in persons.keys():
-        print(personid)
         med_score = np.median([bbox[3] for (_, bbox, _) in persons[personid]])
+        print(persons[personid])
         frequency = len(persons[personid])/duration
+        print('{0} person frequency is {1}, length is {2} and duration is {3}'.format(personid, frequency, len(persons[personid]), duration))
         med_bbox_area = np.median([bbox[6]*bbox[7] for (_, bbox, _) in persons[personid]]) / float(img_area)
         if frequency < FREQ_THRESH:
             print('frequency too low')
@@ -312,6 +314,7 @@ def digest_openpose_output(json_path, video_path):
         keypoints = read_json(j)
         all_keypoints.append(keypoints)
     per_frame_people = clean_data(all_keypoints, video_path)
+    print('digest: {}'.format(per_frame_people))
     #hardcode to cartwheel_b
     dd.io.save('./output/cartwheel_b_bboxes.h5', per_frame_people)
 
@@ -375,14 +378,28 @@ def run_video(frames, per_frame_people, config, output_path):
         result_dict = {}
         used_frames = frames[start_frame:end_frame + 1]
         for i, (frame, proc_param) in enumerate(zip(used_frames, proc_params)):
-            op_keypoint = proc_params['op_kp']
+            op_kp = proc_param['op_kp']
 
             theta = results['theta'][i]
             pose = theta[3:3+72]
             shape = theta[3+72:]
             smpl.trans[:] = 0.
+            smpl.betas[:] = shape
+            smpl.pose[:] = pose
 
-    return 0
+            result = {
+                'theta': np.expand_dims(theta, 0),
+                'joints': np.expand_dims(results['joints'][i], 0),
+                'cams': results['cams'][i],
+                'joints3d': results['joints3d'][i],
+                'op_kp': op_kp,
+                'proc_param': proc_param
+            }
+            result_dict[i] = [result]
+
+        print('writing into {}'.format(result_path))
+        dd.io.save('temp.h5', result_dict)
+
 
 
 
@@ -390,7 +407,8 @@ def run_video(frames, per_frame_people, config, output_path):
 video_dir = './data/cartwheel_b.mp4'
 output_dir = './output/'
 
-cmd_command = '/Users/eliza/Documents/openpose/build/examples/openpose/openpose.bin --video ./data/cartwheel_b.mp4 --model_folder /Users/eliza/Documents/openpose/models'
+#TODO: output path is not correct
+cmd_command = '/Users/eliza/Documents/openpose/build/examples/openpose/openpose.bin --video ./data/cartwheel_b.mp4 --write_json ./data/output/ --write_images ./data/output/ --write_images_format jpg --model_folder /Users/eliza/Documents/openpose/models'
 #only run once to get the output json
 #run = os.system(cmd_command)
 print('reading the openpose output')
@@ -418,5 +436,7 @@ for i, video_path in enumerate(video_paths):
         if valid:
             #print(per_frame_people)
             run_video(frames, per_frame_people, config, output_path)
+        else:
+            print('nothing valid')
 
 
