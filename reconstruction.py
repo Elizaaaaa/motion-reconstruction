@@ -409,13 +409,18 @@ def run_video(frames, per_frame_people, config, output_path):
 
 
 #hardcode everything to vault first
-video_dir = './data/vault.mp4'
+extensions_video = {".mov", ".mp4", ".avi"}
+video_dir = './data/'
 output_dir = './output/'
 
-#TODO: output path is not correct
-cmd_command = '/Users/eliza/Documents/openpose/build/examples/openpose/openpose.bin --video ./data/vault.mp4 --write_json ./data/output/ --write_images ./data/output/ --write_images_format jpg --model_folder /Users/eliza/Documents/openpose/models'
-#only run once to get the output json
-#run = os.system(cmd_command)
+for filename in os.listdir(video_dir):
+    for ext in extensions_video:
+        if filename.endswith(ext):
+            filepath = video_dir+filename
+            cmd_command = '/Users/eliza/Documents/openpose/build/examples/openpose/openpose.bin --video {0} --write_json {1} --write_images {2} --write_images_format jpg --model_folder /Users/eliza/Documents/openpose/models'.format(filepath, output_dir, output_dir)
+            print(cmd_command)
+
+run = os.system(cmd_command)
 print('reading the openpose output')
 digest_openpose_output(output_dir, video_dir)
 print('finish preparing the openpose data')
