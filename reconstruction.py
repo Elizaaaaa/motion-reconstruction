@@ -11,10 +11,6 @@ import scipy.ndimage as ndimage
 import deepdish as dd
 import tensorflow as tf
 
-from src.config import get_config
-from src.mimicus_refiner import Refiner
-
-from smpl_webuser.serialization import load_model
 
 VISIBLE_THRESH = 0.1
 NUM_VISIBLE_THRESH = 5
@@ -304,8 +300,6 @@ def clean_data(all_keypoints, video_path):
     return per_frame
 
 
-def openpose2coco(keypoints):
-    return kp
 
 #read and store keypoints from json output
 def digest_openpose_output(json_path, video_path):
@@ -322,10 +316,7 @@ def digest_openpose_output(json_path, video_path):
         all_keypoints.append(keypoints)
     per_frame_people = clean_data(all_keypoints, video_path)
 
-    #convert joints structure before export
-
-    for frame in per_frame_people:
-        kp =
+    #TODO: when export as csv, adjust the joint's structure
 
     #hardcode to vault
     dd.io.save('./output/vault_bboxes.h5', per_frame_people)

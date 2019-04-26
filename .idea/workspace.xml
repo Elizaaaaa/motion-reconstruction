@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ff267bde-fdb4-4c14-9928-e349f7d0a30b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/digest_openpose.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csvexporter.py" beforeDir="false" afterPath="$PROJECT_DIR$/csvexporter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/havetry.csv" beforeDir="false" afterPath="$PROJECT_DIR$/havetry.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/csv/csv_joined.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/csv_joined.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output/vault_bboxes.h5" beforeDir="false" afterPath="$PROJECT_DIR$/output/vault_bboxes.h5" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reconstruction.py" beforeDir="false" afterPath="$PROJECT_DIR$/reconstruction.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/video.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/video.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp.h5" beforeDir="false" afterPath="$PROJECT_DIR$/temp.h5" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,15 +14,15 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/motion_reconstruction$reconstruction.coverage" NAME="reconstruction Coverage Results" MODIFIED="1555966654868" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/motion_reconstruction$reconstruction.coverage" NAME="reconstruction Coverage Results" MODIFIED="1556300936748" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/reconstruction.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="327" column="12" lean-forward="true" selection-start-line="327" selection-start-column="12" selection-end-line="327" selection-end-column="12" />
+            <state relative-caret-position="333">
+              <caret line="330" column="15" selection-start-line="330" selection-start-column="15" selection-end-line="330" selection-end-column="38" />
               <folding>
                 <element signature="e#53#62#0" expanded="true" />
               </folding>
@@ -35,10 +31,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/digest_openpose.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="416">
+              <caret line="35" column="26" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/csvexporter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3">
-              <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+            <state relative-caret-position="185">
+              <caret line="26" column="40" selection-start-line="26" selection-end-line="27" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -49,8 +54,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/csv_to_bvh.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3">
-              <caret line="26" column="35" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
+            <state relative-caret-position="126">
+              <caret line="7" column="29" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -62,7 +67,7 @@
         <entry file="file://$PROJECT_DIR$/output/vault_bboxes.h5">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="584">
-              <caret line="1" column="532283" selection-start-line="1" selection-start-column="532283" selection-end-line="1" selection-end-column="532283" />
+              <caret column="544146" selection-start-column="544146" selection-end-column="544146" />
             </state>
           </provider>
         </entry>
@@ -70,11 +75,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mimicus_refiner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="212" column="23" selection-start-line="212" selection-start-column="23" selection-end-line="212" selection-end-column="23" />
-              <folding>
-                <element signature="e#0#38#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="126">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -82,8 +84,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/util/video.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28">
-              <caret line="79" column="16" lean-forward="true" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
+            <state relative-caret-position="234">
+              <caret line="57" column="4" selection-start-line="57" selection-start-column="4" selection-end-line="84" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -123,8 +125,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>select_bbox</find>
-      <find>persons[</find>
       <find>signal</find>
       <find>kp =</find>
       <find>collect_frame</find>
@@ -147,12 +147,14 @@
       <find>digest_openpose_output</find>
       <find>joints3d</find>
       <find>joints</find>
-      <find>keen</find>
       <find>dige</find>
       <find>clean_data</find>
       <find>enumerate</find>
-      <find>joint</find>
       <find>convert</find>
+      <find>keen</find>
+      <find>openp</find>
+      <find>h5</find>
+      <find>joint</find>
     </findStrings>
     <replaceStrings>
       <replace>vault</replace>
@@ -171,7 +173,9 @@
         <option value="$PROJECT_DIR$/src/util/video.py" />
         <option value="$PROJECT_DIR$/src/mimicus_refiner.py" />
         <option value="$PROJECT_DIR$/csvexporter.py" />
+        <option value="$PROJECT_DIR$/src/digest_openpose.py" />
         <option value="$PROJECT_DIR$/reconstruction.py" />
+        <option value="$PROJECT_DIR$/digest_openpose.py" />
       </list>
     </option>
   </component>
@@ -226,6 +230,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -287,7 +296,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63774000" />
+    <option name="totallyTimeSpent" value="65207000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="970" extended-state="0" />
@@ -298,7 +307,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4993895" weight="0.32915717" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32915717" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4993895" weight="0.32915717" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -308,14 +317,14 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32915717" />
       <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.50061053" side_tool="true" visible="true" weight="0.32915717" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32915717" />
+      <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.4993895" weight="0.32915717" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="right" id="R Graphics" order="5" />
-      <window_info anchor="right" id="R Packages" order="6" />
+      <window_info anchor="right" id="R Packages" order="6" weight="0.32967034" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -397,20 +406,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/csv_to_bvh.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3">
-          <caret line="26" column="35" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
+        <state relative-caret-position="126">
+          <caret line="7" column="29" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mimicus_refiner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="212" column="23" selection-start-line="212" selection-start-column="23" selection-end-line="212" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -418,34 +417,55 @@
     <entry file="file://$PROJECT_DIR$/output/vault_bboxes.h5">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="584">
-          <caret line="1" column="532283" selection-start-line="1" selection-start-column="532283" selection-end-line="1" selection-end-column="532283" />
+          <caret column="544146" selection-start-column="544146" selection-end-column="544146" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/video.py">
+    <entry file="file://$PROJECT_DIR$/csvexporter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="79" column="16" lean-forward="true" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
+        <state relative-caret-position="185">
+          <caret line="26" column="40" selection-start-line="26" selection-end-line="27" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mimicus_refiner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Python/3.7/lib/python/site-packages/deepdish/io/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/reconstruction.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="327" column="12" lean-forward="true" selection-start-line="327" selection-start-column="12" selection-end-line="327" selection-end-column="12" />
+        <state relative-caret-position="333">
+          <caret line="330" column="15" selection-start-line="330" selection-start-column="15" selection-end-line="330" selection-end-column="38" />
           <folding>
             <element signature="e#53#62#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/csvexporter.py">
+    <entry file="file://$PROJECT_DIR$/src/util/video.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3">
-          <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="234">
+          <caret line="57" column="4" selection-start-line="57" selection-start-column="4" selection-end-line="84" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digest_openpose.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="35" column="26" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="26" />
         </state>
       </provider>
     </entry>
