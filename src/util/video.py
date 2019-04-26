@@ -155,14 +155,6 @@ def preprocess_image(frame, bbox, op_kp, img_size, vis_thresh):
         'op_kp': op_kp,
     }
 
-    # from renderer import draw_skeleton
-    # import matplotlib.pyplot as plt
-    # plt.ion()
-    # plt.clf()
-    # fig = plt.figure(1)
-    # plt.imshow(draw_skeleton(crop, kp[:, :2], vis=kp[:,2]>0.1))
-    # import ipdb; ipdb.set_trace()
-
     proc_img = process_image(crop)
     proc_img = np.expand_dims(proc_img, 0)
     return proc_img, proc_kp, proc_param

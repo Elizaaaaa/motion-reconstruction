@@ -4,7 +4,12 @@
     <list default="true" id="ff267bde-fdb4-4c14-9928-e349f7d0a30b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/csvexporter.py" beforeDir="false" afterPath="$PROJECT_DIR$/csvexporter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/havetry.csv" beforeDir="false" afterPath="$PROJECT_DIR$/havetry.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output/csv/csv_joined.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/csv/csv_joined.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/vault_bboxes.h5" beforeDir="false" afterPath="$PROJECT_DIR$/output/vault_bboxes.h5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reconstruction.py" beforeDir="false" afterPath="$PROJECT_DIR$/reconstruction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/video.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/video.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp.h5" beforeDir="false" afterPath="$PROJECT_DIR$/temp.h5" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,8 +25,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/reconstruction.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-324">
-              <caret line="365" column="5" selection-start-line="365" selection-start-column="5" selection-end-line="365" selection-end-column="5" />
+            <state relative-caret-position="335">
+              <caret line="327" column="12" lean-forward="true" selection-start-line="327" selection-start-column="12" selection-end-line="327" selection-end-column="12" />
               <folding>
                 <element signature="e#53#62#0" expanded="true" />
               </folding>
@@ -29,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/csvexporter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="48" lean-forward="true" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
+            <state relative-caret-position="-3">
+              <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -65,8 +70,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mimicus_refiner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1939">
-              <caret line="205" column="38" lean-forward="true" selection-start-line="205" selection-start-column="38" selection-end-line="205" selection-end-column="38" />
+            <state relative-caret-position="171">
+              <caret line="212" column="23" selection-start-line="212" selection-start-column="23" selection-end-line="212" selection-end-column="23" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -74,11 +79,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/util/video.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="61" column="53" selection-start-line="61" selection-start-column="53" selection-end-line="61" selection-end-column="53" />
+            <state relative-caret-position="28">
+              <caret line="79" column="16" lean-forward="true" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -118,23 +123,9 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>fetch_dict</find>
-      <find>smpl</find>
-      <find>proc_params</find>
-      <find>params</find>
-      <find>vault</find>
-      <find>loading</find>
-      <find>FREQ_THRESH</find>
-      <find>end_frame</find>
-      <find>load</find>
-      <find>get_bbox</find>
-      <find>cartwheel_b</find>
-      <find>digest</find>
-      <find>clean</find>
       <find>select_bbox</find>
       <find>persons[</find>
       <find>signal</find>
-      <find>digest_openpose_output</find>
       <find>kp =</find>
       <find>collect_frame</find>
       <find>cart</find>
@@ -144,10 +135,24 @@
       <find>op_kp</find>
       <find>run_video</find>
       <find>read_frames</find>
-      <find>clean_data</find>
       <find>print(</find>
-      <find>io.save</find>
       <find>run video</find>
+      <find>io.save</find>
+      <find>start_pt</find>
+      <find>offsets</find>
+      <find>feed_dict</find>
+      <find>offset</find>
+      <find>smpl</find>
+      <find>write</find>
+      <find>digest_openpose_output</find>
+      <find>joints3d</find>
+      <find>joints</find>
+      <find>keen</find>
+      <find>dige</find>
+      <find>clean_data</find>
+      <find>enumerate</find>
+      <find>joint</find>
+      <find>convert</find>
     </findStrings>
     <replaceStrings>
       <replace>vault</replace>
@@ -162,11 +167,11 @@
         <option value="$PROJECT_DIR$/src/config.py" />
         <option value="$PROJECT_DIR$/src/mimicus-refiner.py" />
         <option value="$PROJECT_DIR$/src/refiner.py" />
-        <option value="$PROJECT_DIR$/src/mimicus_refiner.py" />
-        <option value="$PROJECT_DIR$/src/util/video.py" />
-        <option value="$PROJECT_DIR$/reconstruction.py" />
         <option value="$PROJECT_DIR$/csv_to_bvh.py" />
+        <option value="$PROJECT_DIR$/src/util/video.py" />
+        <option value="$PROJECT_DIR$/src/mimicus_refiner.py" />
         <option value="$PROJECT_DIR$/csvexporter.py" />
+        <option value="$PROJECT_DIR$/reconstruction.py" />
       </list>
     </option>
   </component>
@@ -277,12 +282,12 @@
       <workItem from="1555610254225" duration="8781000" />
       <workItem from="1555633251330" duration="72000" />
       <workItem from="1555714302143" duration="24912000" />
-      <workItem from="1556059163330" duration="17713000" />
+      <workItem from="1556059163330" duration="21265000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60222000" />
+    <option name="totallyTimeSpent" value="63774000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="970" extended-state="0" />
@@ -292,7 +297,7 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4993895" weight="0.32915717" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32915717" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -302,7 +307,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32915717" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" side_tool="true" visible="true" weight="0.2733485" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.50061053" side_tool="true" visible="true" weight="0.32915717" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32915717" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -400,6 +405,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/mimicus_refiner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="212" column="23" selection-start-line="212" selection-start-column="23" selection-end-line="212" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/output/vault_bboxes.h5">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="584">
@@ -407,40 +422,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/csvexporter.py">
+    <entry file="file://$PROJECT_DIR$/src/util/video.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="48" lean-forward="true" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="28">
+          <caret line="79" column="16" lean-forward="true" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/reconstruction.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-324">
-          <caret line="365" column="5" selection-start-line="365" selection-start-column="5" selection-end-line="365" selection-end-column="5" />
+        <state relative-caret-position="335">
+          <caret line="327" column="12" lean-forward="true" selection-start-line="327" selection-start-column="12" selection-end-line="327" selection-end-column="12" />
           <folding>
             <element signature="e#53#62#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mimicus_refiner.py">
+    <entry file="file://$PROJECT_DIR$/csvexporter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1939">
-          <caret line="205" column="38" lean-forward="true" selection-start-line="205" selection-start-column="38" selection-end-line="205" selection-end-column="38" />
+        <state relative-caret-position="-3">
+          <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
           <folding>
-            <element signature="e#0#38#0" expanded="true" />
+            <element signature="e#0#21#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/video.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="61" column="53" selection-start-line="61" selection-start-column="53" selection-end-line="61" selection-end-column="53" />
         </state>
       </provider>
     </entry>

@@ -24,7 +24,9 @@ joints_names = ['Ankle.R_x', 'Ankle.R_y', 'Ankle.R_z',
                    'Ear.R_x', 'Ear.R_y', 'Ear.R_z']
 
 
-all_frames = dd.io.load('temp.h5')
+all_frames = dd.io.load('./output/vault_bboxes.h5')
+for item1, item2, item3 in (all_frames[0]):
+    print("a new line {}".format(item3))
 temp = pd.DataFrame(all_frames)
 temp.to_csv('havetry.csv')
 
@@ -36,7 +38,7 @@ if not os.path.exists(path):
 for frame in all_frames.keys():
     for item in all_frames[frame]:
         joints3d = item['joints3d']
-        joints_export = pd.DataFrame(joints3d.reshape(1,57), columns=joints_names)
+        joints_export = pd.DataFrame(joints3d.reshape(1, 57), columns=joints_names)
         joints_export.index.name = 'frame'
 
         joints_export.iloc[:, 1::3] = joints_export.iloc[:, 1::3] * -1
