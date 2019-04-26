@@ -406,8 +406,6 @@ def run_video(frames, per_frame_people, config, output_path):
 
         print('writing into {}'.format(result_path))
         dd.io.save('temp.h5', result_dict)
-        write_to_csv(result_dict)
-
 
 
 #hardcode everything to vault first
