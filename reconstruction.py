@@ -407,8 +407,6 @@ def run_video(frames, per_frame_people, config, output_path):
 extensions_video = {".mov", ".mp4", ".avi", ".MOV", ".MP4"}
 video_dir = './data/'
 output_dir = './output/'
-output_image_dir = output_dir + "images/"
-output_json_dir = output_dir + "jsons/"
 openpose_dir = '~/workspace/openpose/'
 
 for filename in os.listdir(video_dir):
@@ -417,7 +415,20 @@ for filename in os.listdir(video_dir):
             movement = os.path.splitext(filename)[0]
             print('processing the movement {}'.format(movement))
             filepath = video_dir+filename
-            cmd_command = '~/workspace/openpose/build/examples/openpose/openpose.bin --video {0} --write_json {1} --write_images {2} --write_images_format jpg --model_folder ~/workspace/openpose/models --display 0'.format(filepath, output_json_dir+movement+"/", output_image_dir+movement+"/")
+            output_json_dir = output_dir + "jsons/" + movement + "/"
+            output_image_dir = output_dir + "images/" + movement + "/"
+            if os.path.exists(output_json_dir):
+                print("jason output alread exists!")
+                os.remove(output_json_dir)
+            else:
+                os.mkdir(output_json_dir)
+            if os.path.exists(output_image_dir):
+                print("image output already exists!")
+                os.remove(output_image_dir)
+            else:
+                os.mkdir(output_image_dir)
+
+            cmd_command = '~/workspace/openpose/build/examples/openpose/openpose.bin --video {0} --write_json {1} --write_images {2} --write_images_format jpg --model_folder ~/workspace/openpose/models --display 0'.format(filepath, output_json_dir, output_image_dir)
             print(cmd_command)
 
             run = os.system(cmd_command)
