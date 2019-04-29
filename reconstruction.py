@@ -453,7 +453,6 @@ video_paths = sorted(os.listdir(video_dir))
 pred_dir = get_pred_pred_prefix(config.load_path)
 
 for i, video_path in enumerate(video_paths):
-    print('working on {}'.format(video_path))
     ext = os.path.splitext(video_path)[1]
     movement = os.path.splitext(video_path)[0]
     output_path = os.path.join(pred_dir, os.path.basename(video_path).replace(ext, '.h5'))

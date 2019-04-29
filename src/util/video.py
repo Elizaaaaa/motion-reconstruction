@@ -176,6 +176,7 @@ def collect_frames(frames, per_frame_people, img_size, vis_thresh):
     # Pick one person
     use_p_id = per_frame_people[start_frame][0]
 
+    print('start frame is {0} and end frame is {1} and total frame is {2}'.format(start_frame, end_frame, len(frames)))
     proc_imgs, kps, proc_params = [], [], []
 
     for i in range(start_frame, end_frame + 1):
