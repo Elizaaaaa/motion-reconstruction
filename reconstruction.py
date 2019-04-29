@@ -305,10 +305,7 @@ def clean_data(all_keypoints, video_path):
 #read and store keypoints from json output
 def digest_openpose_output(json_path, video_path):
 
-    #TODO: read all movements in output file
-    #hardcode to vault for now
-
-    json_path = json_path+"vault/"
+    #TODO: read all movements in output 
     print(json_path)
     all_json_paths = sorted(glob(os.path.join(json_path, "*.json")))
     all_keypoints = []
@@ -407,21 +404,25 @@ def run_video(frames, per_frame_people, config, output_path):
 
 
 #hardcode everything to vault first
-extensions_video = {".mov", ".mp4", ".avi"}
+extensions_video = {".mov", ".mp4", ".avi", ".MOV", ".MP4"}
 video_dir = './data/'
 output_dir = './output/'
+output_image_dir = output_dir + "images/"
+output_json_dir = output_dir + "jsons/"
 openpose_dir = '~/workspace/openpose/'
 
 for filename in os.listdir(video_dir):
     for ext in extensions_video:
         if filename.endswith(ext):
+            movement = os.path.splitext(filename)[0]
+            print('processing the movement {}'.format(movement))
             filepath = video_dir+filename
-            cmd_command = '~/workspace/openpose/build/examples/openpose/openpose.bin --video {0} --write_json {1} --write_images {2} --write_images_format jpg --model_folder ~/workspace/openpose/models --display 0'.format(filepath, output_dir, output_dir)
+            cmd_command = '~/workspace/openpose/build/examples/openpose/openpose.bin --video {0} --write_json {1} --write_images {2} --write_images_format jpg --model_folder ~/workspace/openpose/models --display 0'.format(filepath, output_json_dir+movement+"/", output_image_dir+movement+"/")
             print(cmd_command)
 
             run = os.system(cmd_command)
             print('reading the openpose output')
-            digest_openpose_output(output_dir, filepath)
+            digest_openpose_output(output_json_dir+movement+"/", filepath)
             print('finish preparing the openpose data')
             print('############################')
 
