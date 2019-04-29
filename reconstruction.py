@@ -251,16 +251,16 @@ def clean_data(all_keypoints, video_path):
                 row, col = np.unravel_index(iou_scores.argmax(), (num_persons, num_bboxes))
                 box_is_visited[col] = True
 
-                if (iou_scores[row, col] > IOU_THRESH
-                    and not pid_is_matched[row] and not box_is_matched[col]):
+                if (iou_scores[row, col] > IOU_THRESH and not pid_is_matched[row] and not box_is_matched[col]):
                     persons[row].append((i, bboxes[col], valid_keypoints[col]))
                     pid_is_matched[row] = True
                     box_is_matched[col] = True
 
-                    iou_scores[row, :] = -1
-                    count += 1
-                    if count > 100:
-                        print('infinite loop here')
+                iou_scores[row, :] = -1
+                count += 1
+                if count > 100:
+                    print('infinite loop here')
+                    break
 
             unmatched_boxes = bboxes[np.logical_not(box_is_matched)]
             unmatched_keypoints = valid_keypoints[np.logical_not(box_is_matched)]
