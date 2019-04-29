@@ -183,7 +183,7 @@ def collect_frames(frames, per_frame_people, img_size, vis_thresh):
         people_here = per_frame_people[i]
         for p_id, bbox, op_kp in people_here:
             if p_id != use_p_id:
-                print('skip this frame!')
+                #print('skip this frame!')
                 continue
 
         proc_img, kp, proc_param = preprocess_image(frame, bbox, op_kp,
