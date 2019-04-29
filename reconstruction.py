@@ -313,7 +313,7 @@ def digest_openpose_output(json_path, video_path, movement):
         keypoints = read_json(j)
         all_keypoints.append(keypoints)
     per_frame_people = clean_data(all_keypoints, video_path)
-    dd.io.save('./output/'+movement+".h5", per_frame_people)
+    dd.io.save('./output/'+movement+"_bboxes.h5", per_frame_people)
 
 def get_pred_pred_prefix(load_path):
     checkpt_name = os.path.basename(load_path)
