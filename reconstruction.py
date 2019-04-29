@@ -303,7 +303,7 @@ def clean_data(all_keypoints, video_path):
     return per_frame
 
 #read and store keypoints from json output
-def digest_openpose_output(json_path, video_path):
+def digest_openpose_output(json_path, video_path, movement):
 
     #TODO: read all movements in output 
     print(json_path)
@@ -313,8 +313,7 @@ def digest_openpose_output(json_path, video_path):
         keypoints = read_json(j)
         all_keypoints.append(keypoints)
     per_frame_people = clean_data(all_keypoints, video_path)
-    #hardcode to vault
-    dd.io.save('./output/vault_bboxes.h5', per_frame_people)
+    dd.io.save('./output/'+movement+".h5", per_frame_people)
 
 def get_pred_pred_prefix(load_path):
     checkpt_name = os.path.basename(load_path)
@@ -357,8 +356,8 @@ def get_pred_pred_prefix(load_path):
     return pred_dir
 
 
-def run_video(frames, per_frame_people, config, output_path):
-    print('run video with smpl')
+def run_video(frames, per_frame_people, config, output_path, ext):
+    print('run video with smpl and the output_path is {}'.format(output_path))
 
     proc_images, proc_keypoints, proc_params, start_frame, end_frame = collect_frames(
         frames, per_frame_people, config.img_size, KVisThr)
@@ -366,7 +365,7 @@ def run_video(frames, per_frame_people, config, output_path):
     num_frames = len(proc_images)
     print('after run video has {} images'.format(num_frames))
     proc_images = np.vstack(proc_images)
-    result_path = output_path.replace('.mp4', '.h5')
+    result_path = output_path.replace(ext, '.h5')
     if not os.path.exists(result_path):
         tf.reset_default_graph()
         #TODO: replace the refiner with our version, now try to only abstract joint information
@@ -400,10 +399,9 @@ def run_video(frames, per_frame_people, config, output_path):
             result_dict[i] = [result]
 
         print('writing into {}'.format(result_path))
-        dd.io.save('temp.h5', result_dict)
+        dd.io.save(result_path, result_dict)
 
 
-#hardcode everything to vault first
 extensions_video = {".mov", ".mp4", ".avi", ".MOV", ".MP4"}
 video_dir = './data/'
 output_dir = './output/'
@@ -438,7 +436,7 @@ for filename in os.listdir(video_dir):
 
             run = os.system(cmd_command)
             print('reading the openpose output')
-            digest_openpose_output(output_json_dir+movement+"/", filepath)
+            digest_openpose_output(output_json_dir+movement+"/", filepath, movement)
             print('finish preparing the openpose data')
             print('############################')
 
@@ -451,14 +449,15 @@ print('loading smpl model')
 smpl = load_model(config.smpl_model_path)
 
 np.random.seed(5)
-video_paths = sorted(glob(os.path.join(config.video_dir, "*.mp4")))
+video_paths = sorted(os.listdir(video_dir))
 pred_dir = get_pred_pred_prefix(config.load_path)
 
 for i, video_path in enumerate(video_paths):
     print('working on {}'.format(video_path))
+    ext = os.path.splitext(video_path)[1]
+    movement = os.path.splitext(video_path)[0]
+    output_path = os.path.join(pred_dir, os.path.basename(video_path).replace(ext, '.h5'))
 
-    output_path = os.path.join(pred_dir, os.path.basename(video_path).replace('.mp4', '.h5'))
-    #TODO: run it even exists
     if os.path.exists(output_path):
         print('output file exists!')
         os.remove(output_path)
@@ -466,7 +465,7 @@ for i, video_path in enumerate(video_paths):
     print('working on {}'.format(os.path.basename(video_path)))
     frames, per_frame_people, valid = read_data(video_path, './output/', max_length=KMaxLength)
     if valid:
-        run_video(frames, per_frame_people, config, output_path)
+        run_video(frames, per_frame_people, config, output_path, ext)
     else:
         print('nothing valid')
 
