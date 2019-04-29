@@ -306,7 +306,7 @@ def clean_data(all_keypoints, video_path):
 def digest_openpose_output(json_path, video_path, movement):
 
     #TODO: read all movements in output 
-    print(json_path)
+    print('loading json files from {}'.format(json_path))
     all_json_paths = sorted(glob(os.path.join(json_path, "*.json")))
     all_keypoints = []
     for i, j in enumerate(all_json_paths):
@@ -436,7 +436,7 @@ for filename in os.listdir(video_dir):
 
             run = os.system(cmd_command)
             print('reading the openpose output')
-            digest_openpose_output(output_json_dir+movement+"/", filepath, movement)
+            digest_openpose_output(output_json_dir, filepath, movement)
             print('finish preparing the openpose data')
             print('############################')
 
