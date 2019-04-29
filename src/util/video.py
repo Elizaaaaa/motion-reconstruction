@@ -1,7 +1,7 @@
 """
 Video utils used by refine_video.
 """
-from os.path import exists, join, basename
+from os.path import exists, join, basename, splitext
 import deepdish as dd
 import cv2
 import numpy as np
@@ -31,7 +31,7 @@ def read_data(vid_path, op_dir, max_length=10000):
     a dict of {time, (p_id, bbox)}
     """
     valid = True
-    fname = basename(vid_path).replace('.mp4', '_bboxes.h5')
+    fname = basename(vid_path).replace(splitext(vid_path)[1], '_bboxes.h5')
     bbox_path = join(op_dir, fname)
 
     if not exists(bbox_path):
