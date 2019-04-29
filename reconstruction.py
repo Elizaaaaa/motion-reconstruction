@@ -356,7 +356,7 @@ def get_pred_pred_prefix(load_path):
     return pred_dir
 
 
-def run_video(frames, per_frame_people, config, output_path, ext):
+def run_video(frames, per_frame_people, config, output_path, ext, movement):
     print('run video with smpl and the output_path is {}'.format(output_path))
 
     proc_images, proc_keypoints, proc_params, start_frame, end_frame = collect_frames(
@@ -365,7 +365,10 @@ def run_video(frames, per_frame_people, config, output_path, ext):
     num_frames = len(proc_images)
     print('after run video has {} images'.format(num_frames))
     proc_images = np.vstack(proc_images)
-    result_path = output_path.replace(ext, '.h5')
+    result_path = './output/refined/'+movement+".h5"
+    if not os.path.exists('./output/refined/'):
+        os.mkdir('./output/refined/')
+    #result_path = output_path.replace(ext, '.h5')
     if not os.path.exists(result_path):
         tf.reset_default_graph()
         #TODO: replace the refiner with our version, now try to only abstract joint information
@@ -461,10 +464,10 @@ for i, video_path in enumerate(video_paths):
         print('output file exists!')
         os.remove(output_path)
 
-    print('working on {}'.format(os.path.basename(video_path)))
-    frames, per_frame_people, valid = read_data(video_path, './output/', max_length=KMaxLength)
+    print('working on {}'.format(os.path.basename(video_dir+video_path)))
+    frames, per_frame_people, valid = read_data(video_dir+video_path, './output/', max_length=KMaxLength)
     if valid:
-        run_video(frames, per_frame_people, config, output_path, ext)
+        run_video(frames, per_frame_people, config, output_path, ext, movement)
     else:
         print('nothing valid')
 

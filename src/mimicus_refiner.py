@@ -219,9 +219,9 @@ class Refiner(object):
             loss_keys = [key for key in all_loss_keys if key in result.keys()]
             total_loss = result['total_loss']
 
-            #msg_prefix = 'iter %d/%d, total_loss %.2g' % (step, num_iter, total_loss)
-            #msg_raw = ['%s: %.2g' % (key, result[key]) for key in loss_keys]
-            #print(msg_prefix + ' ' + ' ,'.join(msg_raw))
+            msg_prefix = 'iter %d/%d, total_loss %.2g' % (step, num_iter, total_loss)
+            msg_raw = ['%s: %.2g' % (key, result[key]) for key in loss_keys]
+            print(msg_prefix + ' ' + ' ,'.join(msg_raw))
 
             if step == 0:
                 for key in loss_keys:
