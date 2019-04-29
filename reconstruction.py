@@ -419,11 +419,11 @@ for filename in os.listdir(video_dir):
             cmd_command = '~/workspace/openpose/build/examples/openpose/openpose.bin --video {0} --write_json {1} --write_images {2} --write_images_format jpg --model_folder ~/workspace/openpose/models --display 0'.format(filepath, output_dir, output_dir)
             print(cmd_command)
 
-run = os.system(cmd_command)
-print('reading the openpose output')
-digest_openpose_output(output_dir, video_dir)
-print('finish preparing the openpose data')
-print('############################')
+            run = os.system(cmd_command)
+            print('reading the openpose output')
+            digest_openpose_output(output_dir, filepath)
+            print('finish preparing the openpose data')
+            print('############################')
 
 print('reading config')
 config = get_config()
