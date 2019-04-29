@@ -223,8 +223,6 @@ def clean_data(all_keypoints, video_path):
         valid_keypoints = np.stack(valid_keypoints)
         bboxes, valid_keypoints = select_bbox(bboxes, valid_keypoints)
 
-        print('hows valid keypoints? {}'.format(valid_keypoints))
-
         #adding person
         if len(persons.keys()) == 0:
             print('adding the first person')
