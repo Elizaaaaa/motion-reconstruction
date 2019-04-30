@@ -5,6 +5,11 @@ import sys
 
 
 path = './output/csv/'
+export_path = './output/bvh_animation/'
+if os.path.exists(export_path):
+    os.rmdir(export_path)
+os.mkdir(export_path)
+
 move_types = os.listdir(path)
 for move in move_types:
     objects = bpy.context.scene.objects
@@ -47,7 +52,7 @@ for move in move_types:
                 ob.keyframe_insert(data_path="location", index=-1)
 
     bpy.data.objects['rig'].select = True
-    target_file = './output/bvh_animation/' + move + '.bvh'
+    target_file = export_path + move + '.bvh'
 
     bpy.ops.export_anim.bvh(filepath=target_file, frame_start=1, frame_end=total_frame)
 
