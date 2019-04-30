@@ -41,10 +41,6 @@ class Refiner(object):
         self.data_format = config.data_format
         self.smpl_model_path = config.smpl_model_path
 
-        # Visualization for fitting
-        self.viz = config.viz
-        self.viz_sub = 10
-
         # Loss & Loss weights:
         self.e_lr = config.e_lr
 
@@ -73,9 +69,6 @@ class Refiner(object):
         self.total_params = self.num_theta + self.num_cam + 10
 
         # Model spec
-        # For visualization
-        if self.viz:
-            self.renderer = SMPLRenderer(img_size=self.img_size, face_path=config.smpl_face_path)
 
         # Instantiate SMPL
         self.smpl = SMPL(self.smpl_model_path)
@@ -338,42 +331,6 @@ class Refiner(object):
             'optim': self.e_opt,
         }
 
-        if self.viz:
-            # Precompute op imgs bc they are constant
-            crops = [
-                unprocess_image(image) for image in images[::self.viz_sub]
-            ]
-            op_kps = [
-                np.hstack((self.img_size * ((kp[:, :2] + 1) * 0.5), kp[:, 2, None]))
-                for kp in kps[::self.viz_sub]
-            ]
-            op_imgs = [
-                draw_skeleton(crop, kp, vis=kp[:, 2] > 0.1)
-                for crop, kp in zip(crops, op_kps)
-            ]
-            op_img = np.hstack(op_imgs)
-
-            proj_img, rend_img = self.visualize_seq(crops, init_result)
-            import matplotlib.pyplot as plt
-            plt.ion()
-            plt.figure(1)
-            plt.clf()
-            plt.suptitle('init')
-            plt.subplot(311)
-            plt.imshow(op_img)
-            plt.axis('off')
-            plt.title('openpose joints')
-            plt.subplot(312)
-            plt.imshow(proj_img)
-            plt.axis('off')
-            plt.title('proj joints')
-            plt.subplot(313)
-            plt.imshow(rend_img)
-            plt.axis('off')
-            plt.title('rend verts')
-            plt.pause(1e-3)
-            import ipdb; ipdb.set_trace()
-
         all_loss_keys = ['loss_kp', 'loss_shape', 'loss_joints', 'loss_init_pose', 'loss_camera']
         tbegin = time.time()
         num_iter = self.config.num_refine
@@ -393,28 +350,6 @@ class Refiner(object):
                 for key in loss_keys:
                     loss_records[key].append(result[key])
 
-            # Do visualization
-            if self.viz and step > 0 and step % 50 == 0:
-                proj_img, rend_img = self.visualize_seq(crops, result)
-                import matplotlib.pyplot as plt
-                plt.ion()
-                plt.figure(2)
-                plt.clf()                
-                plt.suptitle('iter %d' % step) 
-                plt.subplot(311)
-                plt.imshow(op_img)
-                plt.axis('off')
-                plt.title('openpose joints')
-                plt.subplot(312)
-                plt.imshow(proj_img)
-                plt.axis('off')                
-                plt.title('proj joints')
-                plt.subplot(313)
-                plt.imshow(rend_img)
-                plt.axis('off')                                
-                plt.title('rend verts')
-                plt.pause(1e-3)
-                import ipdb; ipdb.set_trace()                
 
         total_time = time.time() - tbegin
         print('Total time %g' % total_time)
@@ -425,37 +360,6 @@ class Refiner(object):
         result['loss_records'] = loss_records
 
         return result
-
-    def visualize_seq(self, crops, result):
-        """
-        For weight tuning,, see:
-        first row, the original renders (or original kp)
-        second row, open pose
-        third row, proj kp
-        For every 10th frame or something like this.
-        """
-        pred_kps = (result['joints'][::self.viz_sub] + 1) * 0.5 * self.img_size
-
-        proj_imgs = [
-            draw_skeleton(crop, kp) for crop, kp in zip(crops, pred_kps)
-        ]
-        proj_img = np.hstack(proj_imgs)
-
-        t0 = time.time()
-        # Use camera to figure out the z.
-        cam_scales = result['theta'][:, :0]
-        tzs = [500. / (0.5 * self.config.img_size * cam_s) for cam_s in cam_scales]
-        # rend_imgs = [
-        #     self.renderer(vert + np.array([0, 0, tz])) for (vert, tz) in zip(result['verts'][::self.viz_sub], tzs[::self.viz_sub])
-        # ]
-        rend_imgs = [
-            self.renderer(vert + np.array([0, 0, 6])) for vert in result['verts'][::self.viz_sub]
-        ]        
-        rend_img = np.hstack(rend_imgs)
-        t1 = time.time()
-        print('Took %f sec to render %d imgs' % (t1 - t0, len(rend_imgs)))
-
-        return proj_img, rend_img
 
 # All the  loss functions.
 

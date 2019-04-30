@@ -8,7 +8,7 @@ import tensorflow as tf
 
 from src.config import get_config
 from src.util.video import read_data, collect_frames
-from src.mimicus_refiner import Refiner
+from src.refiner import Refiner
 
 from smpl_webuser.serialization import load_model
 
