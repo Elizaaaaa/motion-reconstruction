@@ -142,6 +142,7 @@ def smooth_detections(persons):
             bboxeskeypoints_filled = fill_in_bboxes(bboxes, start_frame, end_frame)
         else:
             bboxeskeypoints_filled = [bbox[1:] for bbox in bboxes]
+        #print(bboxeskeypoints_filled)
         bboxes_filled, keypoints_filled = [], []
         for bbox, keypoint in bboxeskeypoints_filled:
             bboxes_filled.append(bbox)
@@ -153,7 +154,7 @@ def smooth_detections(persons):
             continue
 
         bboxes_filled = np.vstack(bboxes_filled)
-        keypoints_filled = np.vstack(keypoints_filled)
+        keypoints_filled = np.stack(keypoints_filled)
         bbox_params = bboxes_filled[:, :3]
         bbox_scores = bboxes_filled[:, 3]
         smoothed = np.array([signal.medfilt(param, 11) for param in bbox_params.T]).T
@@ -289,17 +290,9 @@ def clean_data(all_keypoints, video_path):
     if len(persons.keys()) == 0:
         print('nothing survived')
         return {}
-
     per_frame_smooth = smooth_detections(persons)
-    per_frame = {}
-    for personid in persons.keys():
-        for time, bbox, keypoint_using in persons[personid]:
-            if time in per_frame.keys():
-                per_frame[time].append((personid, bbox, keypoint_using))
-            else:
-                per_frame[time] = [(personid, bbox, keypoint_using)]
 
-    return per_frame
+    return per_frame_smooth
 
 
 #read and store keypoints from json output
