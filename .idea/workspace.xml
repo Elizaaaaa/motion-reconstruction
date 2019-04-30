@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ff267bde-fdb4-4c14-9928-e349f7d0a30b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/reconstruction.py" beforeDir="false" afterPath="$PROJECT_DIR$/reconstruction.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/video.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/video.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/csvexporter.py" beforeDir="false" afterPath="$PROJECT_DIR$/csvexporter.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,8 +19,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/reconstruction.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="466" column="24" selection-start-line="466" selection-start-column="18" selection-end-line="466" selection-end-column="24" />
+            <state relative-caret-position="164">
+              <caret line="417" selection-start-line="417" selection-end-line="417" selection-end-column="38" />
               <folding>
                 <element signature="e#53#62#0" expanded="true" />
               </folding>
@@ -46,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/csvexporter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="378">
+              <caret line="58" column="67" selection-start-line="58" selection-start-column="67" selection-end-line="58" selection-end-column="67" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -79,11 +79,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/util/video.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="181" column="47" lean-forward="true" selection-start-line="181" selection-start-column="47" selection-end-line="181" selection-end-column="47" />
+            <state relative-caret-position="215">
+              <caret line="39" column="33" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="33" />
               <folding>
                 <element signature="e#42#94#0" expanded="true" />
               </folding>
@@ -126,7 +126,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>kp =</find>
       <find>collect_frame</find>
       <find>cart</find>
       <find>preprocess_image</find>
@@ -156,6 +155,7 @@
       <find>collect_fra</find>
       <find>collect_f</find>
       <find>run_video</find>
+      <find>writing</find>
     </findStrings>
     <replaceStrings>
       <replace>vault</replace>
@@ -171,12 +171,12 @@
         <option value="$PROJECT_DIR$/src/mimicus-refiner.py" />
         <option value="$PROJECT_DIR$/src/refiner.py" />
         <option value="$PROJECT_DIR$/csv_to_bvh.py" />
-        <option value="$PROJECT_DIR$/csvexporter.py" />
         <option value="$PROJECT_DIR$/src/mimicus_refiner.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/reconstruction.py" />
         <option value="$PROJECT_DIR$/src/util/video.py" />
+        <option value="$PROJECT_DIR$/csvexporter.py" />
       </list>
     </option>
   </component>
@@ -294,7 +294,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63627000" />
+    <option name="totallyTimeSpent" value="64442000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="967" extended-state="0" />
@@ -381,16 +381,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/csvexporter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/csv_to_bvh.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -436,22 +426,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/video.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="39" column="33" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="33" />
+          <folding>
+            <element signature="e#42#94#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/reconstruction.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="466" column="24" selection-start-line="466" selection-start-column="18" selection-end-line="466" selection-end-column="24" />
+        <state relative-caret-position="164">
+          <caret line="417" selection-start-line="417" selection-end-line="417" selection-end-column="38" />
           <folding>
             <element signature="e#53#62#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/video.py">
+    <entry file="file://$PROJECT_DIR$/csvexporter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="181" column="47" lean-forward="true" selection-start-line="181" selection-start-column="47" selection-end-line="181" selection-end-column="47" />
+        <state relative-caret-position="378">
+          <caret line="58" column="67" selection-start-line="58" selection-start-column="67" selection-end-line="58" selection-end-column="67" />
           <folding>
-            <element signature="e#42#94#0" expanded="true" />
+            <element signature="e#0#21#0" expanded="true" />
           </folding>
         </state>
       </provider>

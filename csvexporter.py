@@ -23,38 +23,42 @@ joints_names = ['Ankle.R_x', 'Ankle.R_y', 'Ankle.R_z',
                    'Ear.L_x', 'Ear.L_y', 'Ear.L_z',
                    'Ear.R_x', 'Ear.R_y', 'Ear.R_z']
 
-
-all_frames = dd.io.load('temp.h5')
-temp = pd.DataFrame(all_frames)
-temp.to_csv('havetry.csv')
-
 path = './output/csv/'
 
 if not os.path.exists(path):
     os.mkdir(path)
 
-for frame in all_frames.keys():
-    for item in all_frames[frame]:
-        joints3d = item['joints3d']
-        joints_export = pd.DataFrame(joints3d.reshape(1,57), columns=joints_names)
-        joints_export.index.name = 'frame'
+for filename in os.listdir('./output/refined/'):
+    movement = os.path.basename(filename)
+    movement = os.path.splitext(movement)[0]
+    print('loading h5 file {}'.format(filename))
+    all_frames = dd.io.load(filename)
 
-        joints_export.iloc[:, 1::3] = joints_export.iloc[:, 1::3] * -1
-        joints_export.iloc[:, 2::3] = joints_export.iloc[:, 2::3] * -1
+    for frame in all_frames.keys():
+        for item in all_frames[frame]:
+            joints3d = item['joints3d']
+            joints_export = pd.DataFrame(joints3d.reshape(1, 57), columns=joints_names)
+            joints_export.index.name = 'frame'
 
-        hipCenter = joints_export.loc[:][['Hip.R_x', 'Hip.R_y', 'Hip.R_z',
-                                          'Hip.L_x', 'Hip.L_y', 'Hip.L_z']]
+            joints_export.iloc[:, 1::3] = joints_export.iloc[:, 1::3] * -1
+            joints_export.iloc[:, 2::3] = joints_export.iloc[:, 2::3] * -1
 
-        joints_export['hip.Center_x'] = hipCenter.iloc[0][::3].sum() / 2
-        joints_export['hip.Center_y'] = hipCenter.iloc[0][1::3].sum() / 2
-        joints_export['hip.Center_z'] = hipCenter.iloc[0][2::3].sum() / 2
+            hipCenter = joints_export.loc[:][['Hip.R_x', 'Hip.R_y', 'Hip.R_z',
+                                              'Hip.L_x', 'Hip.L_y', 'Hip.L_z']]
 
-        joints_export.to_csv(path + "vault_"+str(frame)+".csv")
+            joints_export['hip.Center_x'] = hipCenter.iloc[0][::3].sum() / 2
+            joints_export['hip.Center_y'] = hipCenter.iloc[0][1::3].sum() / 2
+            joints_export['hip.Center_z'] = hipCenter.iloc[0][2::3].sum() / 2
+
+            #TODO: export jsons to according files
+            this_path = path+"/"+movement+"/"
+            joints_export.to_csv(this_path + str(frame) + ".csv")
+
+    all_files = glob.glob(os.path.join(this_path, "*.csv"))
+    df_from_each_file = (pd.read_csv(f) for f in sorted(all_files))
+    concatenated_df = pd.concat(df_from_each_file, ignore_index=True)
+
+    concatenated_df['frame'] = concatenated_df.index + 1
+    concatenated_df.to_csv(this_path + "csv_joined.csv", index=False)
 
 
-all_files = glob.glob(os.path.join(path, "*.csv"))
-df_from_each_file = (pd.read_csv(f) for f in sorted(all_files))
-concatenated_df = pd.concat(df_from_each_file, ignore_index=True)
-
-concatenated_df['frame'] = concatenated_df.index+1
-concatenated_df.to_csv(path + "/csv_joined.csv", index=False)
