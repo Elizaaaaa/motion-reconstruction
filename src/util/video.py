@@ -37,6 +37,7 @@ def read_data(vid_path, op_dir, max_length=10000):
     if not exists(bbox_path):
         print('!!!%s doesnt exist!!!' % bbox_path)
         return None, None, False
+    print('reading frames from video {}'.format(vid_path))
     frames = read_frames(vid_path)
 
     print('loading h5 file {}'.format(bbox_path))

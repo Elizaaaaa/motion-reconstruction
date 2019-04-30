@@ -1,6 +1,7 @@
 models/
 *.mp4
 *.mov
+data/
 .idea/workspace.xml
 
 # Byte-compiled / optimized / DLL files

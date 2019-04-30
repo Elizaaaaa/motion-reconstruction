@@ -365,9 +365,11 @@ def run_video(frames, per_frame_people, config, output_path, ext, movement):
     num_frames = len(proc_images)
     print('after run video has {} images'.format(num_frames))
     proc_images = np.vstack(proc_images)
+    
     result_path = './output/refined/'+movement+".h5"
     if not os.path.exists('./output/refined/'):
         os.mkdir('./output/refined/')
+
     #result_path = output_path.replace(ext, '.h5')
     if not os.path.exists(result_path):
         tf.reset_default_graph()
