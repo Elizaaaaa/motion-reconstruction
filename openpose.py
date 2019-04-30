@@ -292,13 +292,24 @@ def clean_data(all_keypoints, video_path):
 
     per_frame_smooth = smooth_detections(persons)
     per_frame = {}
+
+    bboxes_using = []
+    for id in persons.keys():
+        if id in per_frame_smooth.keys():
+            for time, bbox, kp in per_frame_smooth[id]:
+                bboxes_using.append(bbox)
+        else:
+            copybox = np.copy(bboxes_using[-1])
+            bboxes_using.append(copybox)
+
     for personid in persons.keys():
         for time, bbox, keypoint_using in persons[personid]:
             if time in per_frame.keys():
-                per_frame[time].append((personid, bbox, keypoint_using))
+                per_frame[time].append((personid, bboxes_using[personid], keypoint_using))
             else:
-                per_frame[time] = [(personid, bbox, keypoint_using)]
+                per_frame[time] = [(personid, bboxes_using[personid], keypoint_using)]
 
+    print(per_frame)
     return per_frame
 
 
