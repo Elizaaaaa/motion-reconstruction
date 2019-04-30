@@ -18,7 +18,7 @@ for move in move_types:
     print(empties)
 
     filename = 'csv_joined.csv'
-    directory = r'./output/csv/'
+    directory = r'./output/csv/'+move
 
     fullpath = os.path.join(directory, filename)
     total_frame = 0
@@ -47,7 +47,7 @@ for move in move_types:
                 ob.keyframe_insert(data_path="location", index=-1)
 
     bpy.data.objects['rig'].select = True
-    target_file = './output/bvh_animation/' + 'output.bvh'
+    target_file = './output/bvh_animation/' + move + '.bvh'
 
     bpy.ops.export_anim.bvh(filepath=target_file, frame_start=1, frame_end=total_frame)
 
