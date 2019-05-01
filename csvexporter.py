@@ -34,10 +34,8 @@ for filename in os.listdir('./output/refined/'):
     this_path = path+movement+"/"
     h5_path = './output/refined/'+filename
     print('loading h5 file {}'.format(h5_path))
-    if os.path.exists(this_path):
-        print('{} csv file exists, clean up the old data'.format(movement))
-        os.rmdir(this_path)
-    os.mkdir(this_path)
+    if not os.path.exists(this_path):
+        os.mkdir(this_path)
     print('writing csv into {}'.format(this_path))
     all_frames = dd.io.load(h5_path)
 
@@ -56,10 +54,15 @@ for filename in os.listdir('./output/refined/'):
             joints_export['hip.Center_x'] = hipCenter.iloc[0][::3].sum() / 2
             joints_export['hip.Center_y'] = hipCenter.iloc[0][1::3].sum() / 2
             joints_export['hip.Center_z'] = hipCenter.iloc[0][2::3].sum() / 2
-            
-            joints_export.to_csv(this_path + str(frame) + ".csv")
+
+            csv_id = str(frame)
+            while csv_id.__len__() < 4:
+                csv_id = "0"+csv_id
+
+            joints_export.to_csv(this_path + csv_id + ".csv")
 
     all_files = glob.glob(os.path.join(this_path, "*.csv"))
+
     df_from_each_file = (pd.read_csv(f) for f in sorted(all_files))
     concatenated_df = pd.concat(df_from_each_file, ignore_index=True)
 
