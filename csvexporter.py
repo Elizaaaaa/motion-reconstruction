@@ -55,9 +55,7 @@ for filename in os.listdir('./output/refined/'):
             joints_export['hip.Center_y'] = hipCenter.iloc[0][1::3].sum() / 2
             joints_export['hip.Center_z'] = hipCenter.iloc[0][2::3].sum() / 2
 
-            csv_id = str(frame)
-            while csv_id.__len__() < 4:
-                csv_id = "0"+csv_id
+            csv_id = "%04d"%frame
 
             joints_export.to_csv(this_path + csv_id + ".csv")
 
