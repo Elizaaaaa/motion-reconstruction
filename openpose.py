@@ -338,7 +338,7 @@ for filename in os.listdir(video_dir):
             else:
                 os.mkdir(output_image_dir)
 
-            cmd_command = '~/workspace/openpose/build/examples/openpose/openpose.bin --net_resolution "1056x640" --scale_number 4 --scale_gap 0.25 --video {0} --write_json {1} --write_images {2} --write_images_format jpg --model_folder ~/workspace/openpose/models --display 0'.format(filepath, output_json_dir, output_image_dir)
+            cmd_command = '~/workspace/openpose/build/examples/openpose/openpose.bin --net_resolution "1312x736" --scale_number 4 --scale_gap 0.25 --video {0} --write_json {1} --write_images {2} --write_images_format jpg --model_folder ~/workspace/openpose/models --display 0'.format(filepath, output_json_dir, output_image_dir)
             print(cmd_command)
 
             run = os.system(cmd_command)
