@@ -2,10 +2,15 @@ rm ./data/*
 rm ./original_videos/*
 
 #gsutil cp gs://mimicus-videos/user-uploads/* ./data/
-#gdrive download --recursive 15uXxRZAiomTdDPp1T933nETZM_oBB7kC
-gsutil cp gs://mimicus-videos/debug/45degree/* ./original_videos/
-#sudo mv demo/videos/* ./original_videos/
-#rm -rf demo
+#gsutil cp gs://mimicus-videos/debug/45degree/* ./original_videos/
+gdrive download --recursive 15uXxRZAiomTdDPp1T933nETZM_oBB7kC
+
+sudo mv demo/videos/* ./original_videos/
+
+gsutil rm gs://mimicus-videos/user-uploads/*
+gsutil cp ./original_videos/* gs://mimicus-videos/user-uploads/
+
+rm -rf demo
 echo "Downloads finished."
 
 echo "Resize the input videos"
