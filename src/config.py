@@ -54,11 +54,11 @@ flags.DEFINE_boolean('viz', False, 'visualize refinement')
 
 # Weights for refinment:
 flags.DEFINE_float('e_lr', 1e-3, 'step size for iteration.')
-flags.DEFINE_float('e_loss_weight', 12, 'weight on kp alignment')
+flags.DEFINE_float('e_loss_weight', 10, 'weight on kp alignment')
 flags.DEFINE_float('shape_loss_weight', .5, 'weight on shape variance')
-flags.DEFINE_float('joint_smooth_weight', 50, 'weight on joint smoothness')
+flags.DEFINE_float('joint_smooth_weight', 25, 'weight on joint smoothness')
 flags.DEFINE_float('camera_smooth_weight', 1., 'weight on camera smoothness')
-flags.DEFINE_float('init_pose_loss_weight', 130., 'weight on how much to stick to initial pose')
+flags.DEFINE_float('init_pose_loss_weight', 100., 'weight on how much to stick to initial pose')
 
 # Other settings:
 flags.DEFINE_integer('num_refine', 300, 'number of iterations to optimize.')
